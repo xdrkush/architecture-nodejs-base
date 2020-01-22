@@ -10,6 +10,7 @@ const
     mongoose = require('mongoose'),
     MongoStore = require('connect-mongo'),
     bodyParser = require('body-parser'),
+    a = "a",
     port = process.env.PORT || 3000;
 
 //mongoose
