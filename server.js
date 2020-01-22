@@ -10,7 +10,11 @@ const
     mongoose = require('mongoose'),
     MongoStore = require('connect-mongo'),
     bodyParser = require('body-parser'),
+    methodOverride = require('method-override'),
     port = process.env.PORT || 3000;
+
+// Method-Override
+app.use(methodOverride('_method'))
 
 // Mongoose
 const urlDb = 'mongodb://localhost:27017/apiRest'

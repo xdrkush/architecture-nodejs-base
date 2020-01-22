@@ -17,9 +17,28 @@ module.exports = {
         Article.create({
                 ...req.body
             },
-            res.render('article', {
-                dbArticle
-            })
+            res.redirect('/article')
         )
+    },
+    deleteOne: (req, res) => {
+        Article.deleteOne({
+                _id: req.params.id
+            },
+            (err) => {
+                if (!err) {
+                    res.redirect('/article')
+                } else {
+                    res.send(err)
+                }
+            })
+    },
+    deleteAll: (req, res) => {
+        Article.deleteMany((err) => {
+            if (!err) {
+                res.redirect('/article')
+            } else {
+                res.send(err)
+            }
+        })
     }
 }
