@@ -2,8 +2,6 @@
  * App.js
  ******************************/
 
-//  Commit supprimer
-
 const
     express = require('express'),
     app = express(),
