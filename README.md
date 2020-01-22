@@ -2,16 +2,17 @@
 
 ## Tuto base NodeJS
 
-## Pré-requis
+# Pré-requis
 
 NodeJS v10
 MongoDB Local ou Cloud (db: apiRest)
 
-## Installer l'appli
+# Installer l'appli
 
 ```
 sudo mongod
 ```
+
 ## Nouveau Terminal
 
 ```
