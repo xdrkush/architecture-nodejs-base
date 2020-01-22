@@ -1,18 +1,18 @@
 # architecture-nodejs-base
 
-Tuto base NodeJS
+### Tuto base NodeJS
 
-### Pré-requis
+## Pré-requis
 
 NodeJS v10
 MongoDB Local ou Cloud (db: apiRest)
 
-### Installer l'appli
+## Installer l'appli
 
 ```
 sudo mongod
 ```
-Nouveau Terminal
+### Nouveau Terminal
 
 ```
 git clone https://github.com/xdrkush/architecture-nodejs-base.git
@@ -21,4 +21,4 @@ npm i
 npm start
 ```
 
-J'espère que sa pourra vous aidez.
+### J'espère que sa pourra vous aidez.
