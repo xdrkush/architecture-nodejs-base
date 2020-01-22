@@ -5,7 +5,12 @@
 # Pré-requis
 
 NodeJS v10
-MongoDB Local ou Cloud (db: apiRest)
+MongoDB Local ou Cloud (db: apiRest) Nodemon
+
+# Installer Nodemon
+```
+sudo npm i nodemon -g
+```
 
 # Installer l'appli
 
