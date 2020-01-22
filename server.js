@@ -10,10 +10,9 @@ const
     mongoose = require('mongoose'),
     MongoStore = require('connect-mongo'),
     bodyParser = require('body-parser'),
-    a = "a",
     port = process.env.PORT || 3000;
 
-//mongoose
+// Mongoose
 const urlDb = 'mongodb://localhost:27017/apiRest'
 
 mongoose.connect(urlDb, {
@@ -23,6 +22,14 @@ mongoose.connect(urlDb, {
 
 const mongoStore = MongoStore(expressSession)
 
+// Handlebars
+app.set('view engine', 'hbs');
+app.engine('hbs', hbs({
+    extname: 'hbs',
+    defaultLayout: 'main'
+}));
+
+// Express-session
 app.use(expressSession({
 
     secret: 'securite',
@@ -42,18 +49,11 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-//handlebars
-app.set('view engine', 'hbs');
-app.engine('hbs', hbs({
-    extname: 'hbs',
-    defaultLayout: 'main'
-}));
-
 const ROUTER = require('./api/router')
 app.use('/', ROUTER)
 
 app.use((req, res) => {
-    res.render('error404')
+    res.render('err404')
 })
 
 app.listen(port, () => {

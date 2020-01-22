@@ -1,14 +1,25 @@
+// Import
 const express = require('express'),
     router = express.Router(),
-    homepage = require('./controllers/home')
+    path = require('path')
+
+// Controller
+const homeController = require('./controllers/homeController'),
+    articleController = require('./controllers/articleController'),
+    contactController = require('./controllers/contactController')
 
 // Home
 router.route('/')
-    .get(homepage.get)
-    .post(homepage.post)
+    .get(homeController.get)
+    .post(homeController.post)
 
-router.route('/article/add')
-    // .get(articleAddController.get)
-    // .post(articleAddController.post)
+// Article
+router.route('/article')
+    .get(articleController.get)
+    .post(articleController.post)
+
+// Contact
+router.route('/contact')
+    .get(contactController.get)
 
 module.exports = router;
