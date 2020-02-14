@@ -11,9 +11,6 @@ const
   MongoStore = require('connect-mongo'),
   bodyParser = require('body-parser'),
   methodOverride = require('method-override'),
-  multer = require('multer'),
-  fs = require('fs'),
-  path = require('path'),
   port = process.env.PORT || 3000;
 
 // Method-Override

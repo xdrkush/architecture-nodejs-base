@@ -55,9 +55,8 @@ router.route('/article')
 
 // Article ID
 router.route('/article/:id')
+  .put(upload.single('imgArticle'), articleController.put)
   .delete(articleController.deleteOne)
-
-
 
 // Contact
 router.route('/contact')

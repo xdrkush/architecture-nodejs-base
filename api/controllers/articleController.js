@@ -24,6 +24,21 @@ module.exports = {
           })
       }
   },
+  put: async(req, res) => {
+      console.log(req.file);
+      
+      if (!req.file) {
+        res.redirect('/')
+      } else {
+        Article.updateOne({
+            ...req.body,
+            imgArticle: `/assets/images/${req.file.originalname}`
+          },
+          (error, post) => {
+            res.redirect('/article')
+          })
+      }
+  },
   deleteOne: (req, res) => {
     Article.deleteOne({
         _id: req.params.id
