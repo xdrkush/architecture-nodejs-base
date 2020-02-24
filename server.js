@@ -11,7 +11,11 @@ const
     MongoStore = require('connect-mongo'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
-    port = process.env.PORT || 3000;
+    port = process.env.PORT || 3000,
+    morgan = require('morgan');
+
+// Morgan
+app.use(morgan('dev'))
 
 // Method-Override
 app.use(methodOverride('_method'))
