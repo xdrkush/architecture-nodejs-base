@@ -12,14 +12,16 @@ const
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
     port = process.env.PORT || 3000,
-    expressOasGenerator = require('express-oas-generator')
+    swaggerUi = require('swagger-ui-express'),
+    // expressOasGenerator = require('express-oas-generator'),
+    swaggerDocument = require('./api/config/swagger.json'),
     morgan = require('morgan');
 
 // Morgan
 app.use(morgan('dev'))
 
 // OAS generator express ( doc api )
-expressOasGenerator.init(app, {});
+// expressOasGenerator.init(app, {});
 
 // Method-Override
 app.use(methodOverride('_method'))
@@ -55,11 +57,14 @@ app.use(expressSession({
 }));
 
 //app.use
-app.use(express.static('public'));
+app.use('/assets', express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+
+// Swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const ROUTER = require('./api/router')
 app.use('/', ROUTER)
