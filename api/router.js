@@ -6,7 +6,9 @@ const express = require('express'),
 // Controller
 const homeController = require('./controllers/homeController'),
     articleController = require('./controllers/articleController'),
-    contactController = require('./controllers/contactController')
+    contactController = require('./controllers/contactController'),
+    userController = require('./controllers/userController'),
+    authGoogleController = require('./controllers/googleAuthController')
 
 // Home
 router.route('/')
@@ -22,10 +24,15 @@ router.route('/article')
 router.route('/article/:id')
     .delete(articleController.deleteOne)
 
-
-
 // Contact
 router.route('/contact')
     .get(contactController.get)
 
-module.exports = router;
+// Users
+router.route('/user/:id')
+    .delete(userController.deleteOne)
+
+// Auth
+router.use('/auth/google', authGoogleController)
+
+module.exports = router

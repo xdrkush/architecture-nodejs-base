@@ -1,1 +1,24 @@
 <h1>Home</h1>
+
+<a class="google-btn" href="/auth/google">Google+</a>
+
+<div>
+    <h2><u>Liste User:</u></h2>
+    <div class="flx">
+        {{#each dbUser }}
+        <div class="itm">
+            <h3>E-mail: {{ email }}</h3>
+          <form action="/user/{{ this.id }}/?_method=DELETE" method="post">
+            <button type="submit">Effacer</button>
+          </form>
+        </div>
+        {{/each }}
+    </div>
+<style>
+.google-btn {
+    padding: 5px;
+    margin: 5px;
+    background-color: #dd4b39;
+    border-radius: 5px;
+}
+</style>

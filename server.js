@@ -12,6 +12,8 @@ const
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
     port = process.env.PORT || 3000,
+    passport = require('passport')
+    passportSetup = require('./api/config/passport-setup')
     expressOasGenerator = require('express-oas-generator')
     morgan = require('morgan');
 
@@ -24,12 +26,17 @@ expressOasGenerator.init(app, {});
 // Method-Override
 app.use(methodOverride('_method'))
 
+// PassportJS
+app.use(passport.initialize())
+app.use(passport.session())
+
 // Mongoose
 const urlDb = 'mongodb://localhost:27017/apiRest'
 
 mongoose.connect(urlDb, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true
 })
 
 const mongoStore = MongoStore(expressSession)
@@ -55,11 +62,16 @@ app.use(expressSession({
 }));
 
 //app.use
-app.use(express.static('public'));
+app.use('/assets', express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+
+app.use('*', (req, res, next) => {
+    console.log(req.session)
+    next()
+})
 
 const ROUTER = require('./api/router')
 app.use('/', ROUTER)
