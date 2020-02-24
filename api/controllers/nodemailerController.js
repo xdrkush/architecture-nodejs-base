@@ -19,12 +19,12 @@ module.exports = {
       subject: 'Félicitation !',
       html: '<h2>Mon premier mail avec nodemailer, Successfull</h2>'
     }
-    transporter.sendMail(mailOptions, function(err, info) {
+    transporter.sendMail(mailOptions, (err, info) => {
       if (err)
         console.log(err)
       else
         console.log(info)
-      res.redirect('/')
+        res.render('home')
     })
   },
   sendVerif: (req, res) => {
@@ -45,7 +45,6 @@ module.exports = {
         res.end("error")
       } else {
         console.log("Message Envoyer")
-        // res.end('sent')
         next()
       }
     })
