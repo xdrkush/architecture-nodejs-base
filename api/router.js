@@ -31,4 +31,10 @@ router.route('/contact')
 router.route('/nodemailerTest')
     .get(nodemailerController.test)
 
+router.route('/send')
+    .get(nodemailerController.sendVerif)
+
+router.route('/verify/:id')
+    .get(nodemailerController.verifMail)
+
 module.exports = router;

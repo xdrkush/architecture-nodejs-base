@@ -56,9 +56,9 @@ app.use(bodyParser.urlencoded({
 const ROUTER = require('./api/router')
 app.use('/', ROUTER)
 
-app.use((req, res) => {
-    res.render('err404')
-})
+// app.use((req, res) => {
+//     res.render('err404')
+// })
 
 app.listen(port, () => {
     console.log("le serveur tourne sur le prt: " + port);
