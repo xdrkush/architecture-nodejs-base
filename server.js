@@ -12,10 +12,14 @@ const
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
     port = process.env.PORT || 3000,
+    expressOasGenerator = require('express-oas-generator')
     morgan = require('morgan');
 
 // Morgan
 app.use(morgan('dev'))
+
+// OAS generator express ( doc api )
+expressOasGenerator.init(app, {});
 
 // Method-Override
 app.use(methodOverride('_method'))
@@ -60,9 +64,9 @@ app.use(bodyParser.urlencoded({
 const ROUTER = require('./api/router')
 app.use('/', ROUTER)
 
-app.use((req, res) => {
-    res.render('err404')
-})
+// app.use((req, res) => {
+//     res.render('err404')
+// })
 
 app.listen(port, () => {
     console.log("le serveur tourne sur le prt: " + port);
