@@ -26,7 +26,10 @@ module.exports = {
     }
   },
   put: async(req, res) => {
-    console.log(req.file);
+    const dbArticle = await Article.findById(req.params.id),
+          pathImg = path.resolve("public/images/" + dbArticle.name)
+
+    console.log(dbArticle)
 
     if (!req.file) {
       res.redirect('/')
@@ -37,7 +40,15 @@ module.exports = {
           name: req.file.originalname
         },
         (error, post) => {
-          res.redirect('/article')
+          fs.unlink( pathImg ,
+            (err) => {
+              if (err) {
+                console.log(err)
+              } else {
+                console.log('File Deleted.')
+                res.redirect('/article')
+              }
+            })
         })
     }
   },
@@ -52,7 +63,7 @@ module.exports = {
       },
       (err) => {
         if (!err) {
-          fs.unlink( pathImg, 
+          fs.unlink( pathImg,
             (err) => {
               if (err) {
                 console.log(err)
