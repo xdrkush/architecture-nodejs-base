@@ -7,14 +7,14 @@
         <div class="itm">
             <h3>Titre: {{ title }}</h3>
             <img src="{{ imgArticle }}" style="heigth: 150px; width: 150px">
-            {{!-- Ne pas oublier le en enctype="multipart/form-data"--}}
-            <form action="/article/{{ this.id }}/?_method=PUT" method="post" enctype="multipart/form-data">
-                <input type="text" name="title" placeholder="Title" required>
+            {{!-- Ne pas oublier leenctype="multipart/form-data"--}}
+            <form action="/article/{{ this._id }}/?_method=PUT" method="post" enctype="multipart/form-data">
+                <input type="text" name="title" placeholder="Title">
                 </br>
-                <input type="file" name="imgArticle" required>
+                <input type="file" name="imgArticle">
                 <button type="submit">Editer</button>
             </form>
-            <form action="/article/{{ this.id }}/?_method=DELETE" method="post">
+            <form action="/article/{{ this._id }}/?_method=DELETE" method="post">
                 <button type="submit">Effacer</button>
             </form>
         </div>

@@ -25,22 +25,37 @@ module.exports = {
         })
     }
   },
-  put: async(req, res) => {
+  put: async (req, res) => {
+    // Probleme suppression (plusieur image Conflit )
     const dbArticle = await Article.findById(req.params.id),
-          pathImg = path.resolve("public/images/" + dbArticle.name)
+          query = {_id: req.params.id}
+      pathImg = path.resolve("public/images/" + dbArticle.name)
 
-    console.log(dbArticle)
+    console.log(req.file)
 
     if (!req.file) {
-      res.redirect('/')
+      if (req.body.title) {
+        console.log('edit title (no file)')
+        console.log(dbArticle)
+
+        Article.updateOne( query, {
+          title: req.body.title
+        },
+        (err) => {
+          if (err) res.redirect('/')
+          else res.redirect('/article')
+        })
+      } else {
+        res.redirect('/')
+      }
     } else {
-      Article.updateOne({
+      Article.updateOne( query, {
           ...req.body,
           imgArticle: `/assets/images/${req.file.originalname}`,
           name: req.file.originalname
         },
         (error, post) => {
-          fs.unlink( pathImg ,
+          fs.unlink( pathImg,
             (err) => {
               if (err) {
                 console.log(err)
@@ -52,9 +67,9 @@ module.exports = {
         })
     }
   },
-  deleteOne: async (req, res) => {
+  deleteOne: async(req, res) => {
     const dbArticle = await Article.findById(req.params.id),
-          pathImg = path.resolve("public/images/" + dbArticle.name)
+      pathImg = path.resolve("public/images/" + dbArticle.name)
 
     console.log(dbArticle);
 
@@ -63,7 +78,7 @@ module.exports = {
       },
       (err) => {
         if (!err) {
-          fs.unlink( pathImg,
+          fs.unlink(pathImg,
             (err) => {
               if (err) {
                 console.log(err)
@@ -78,11 +93,28 @@ module.exports = {
       })
   },
   deleteAll: (req, res) => {
+    const directory = path.resolve("public/images/")
+
     Article.deleteMany((err) => {
       if (!err) {
-        res.redirect('/article')
+        fs.readdir(directory, (err, files) => {
+          if (!err) {
+            for (const file of files) {
+              fs.unlink(path.join(directory, file), (err) => {
+                if (!err) {
+                  console.log('Delete Img' + file)
+                } else {
+                  console.log(err)
+                }
+              })
+            }
+            res.redirect('/article')
+          } else {
+            console.log(err)
+          }
+        })
       } else {
-        res.send(err)
+        console.log(err)
       }
     })
   }
