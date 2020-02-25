@@ -12,40 +12,55 @@ module.exports = {
     })
   },
   post: async(req, res) => {
-      if (!req.file) {
-        res.redirect('/')
-      } else {
-        Article.create({
-            ...req.body,
-            imgArticle: `/assets/images/${req.file.originalname}`
-          },
-          (error, post) => {
-            res.redirect('/article')
-          })
-      }
+    if (!req.file) {
+      res.redirect('/')
+    } else {
+      Article.create({
+          ...req.body,
+          imgArticle: `/assets/images/${req.file.originalname}`,
+          name: req.file.originalname
+        },
+        (error, post) => {
+          res.redirect('/article')
+        })
+    }
   },
   put: async(req, res) => {
-      console.log(req.file);
-      
-      if (!req.file) {
-        res.redirect('/')
-      } else {
-        Article.updateOne({
-            ...req.body,
-            imgArticle: `/assets/images/${req.file.originalname}`
-          },
-          (error, post) => {
-            res.redirect('/article')
-          })
-      }
+    console.log(req.file);
+
+    if (!req.file) {
+      res.redirect('/')
+    } else {
+      Article.updateOne({
+          ...req.body,
+          imgArticle: `/assets/images/${req.file.originalname}`,
+          name: req.file.originalname
+        },
+        (error, post) => {
+          res.redirect('/article')
+        })
+    }
   },
-  deleteOne: (req, res) => {
+  deleteOne: async (req, res) => {
+    const dbArticle = await Article.findById(req.params.id),
+          pathImg = path.resolve("public/images/" + dbArticle.name)
+
+    console.log(dbArticle);
+
     Article.deleteOne({
         _id: req.params.id
       },
       (err) => {
         if (!err) {
-          res.redirect('/article')
+          fs.unlink( pathImg, 
+            (err) => {
+              if (err) {
+                console.log(err)
+              } else {
+                console.log('File Deleted.')
+                res.redirect('/article')
+              }
+            })
         } else {
           res.send(err)
         }

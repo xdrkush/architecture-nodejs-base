@@ -18,6 +18,7 @@ const ArticleSchema = new mongoose.Schema({
     imgDescr: String,
     promo: Number,
     taille: String,
+    name: String,
     isVerified: {
         type: Boolean,
         default: false
