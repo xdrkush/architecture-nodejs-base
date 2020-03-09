@@ -6,7 +6,8 @@ const express = require('express'),
 // Controller
 const homeController = require('./controllers/homeController'),
     articleController = require('./controllers/articleController'),
-    contactController = require('./controllers/contactController')
+    contactController = require('./controllers/contactController'),
+    backUpController = require('./controllers/backUpController')
 
 // Home
 router.route('/')
@@ -22,7 +23,9 @@ router.route('/article')
 router.route('/article/:id')
     .delete(articleController.deleteOne)
 
-
+// Back Up
+router.route('/backup')
+  .get(backUpController.get)
 
 // Contact
 router.route('/contact')
