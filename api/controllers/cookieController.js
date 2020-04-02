@@ -1,10 +1,3 @@
-const
-  MongoStore = require('connect-mongo'),
-  mongoose = require('mongoose'),
-  expressSession = require('express-session')
-
-const mongoStore = MongoStore(expressSession)
-
 module.exports = {
   clearCookie: (req, res) => {
     console.log(req.body)
