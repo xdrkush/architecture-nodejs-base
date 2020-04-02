@@ -6,7 +6,8 @@ const express = require('express'),
 // Controller
 const homeController = require('./controllers/homeController'),
     articleController = require('./controllers/articleController'),
-    contactController = require('./controllers/contactController')
+    contactController = require('./controllers/contactController'),
+    cookieController = require('./controllers/cookieController')
 
 // Home
 router.route('/')
@@ -22,7 +23,18 @@ router.route('/article')
 router.route('/article/:id')
     .delete(articleController.deleteOne)
 
+// Cookie
+router.route('/cookie')
+    .post(cookieController.cookie)
 
+router.route('/clearCookie')
+    .get(cookieController.clearCookie)
+
+router.route('/newCookie')
+    .get(cookieController.newCookie)
+
+router.route('/newPtiGato')
+    .get(cookieController.newPtiGato)
 
 // Contact
 router.route('/contact')

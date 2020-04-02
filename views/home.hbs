@@ -1,1 +1,99 @@
 <h1>Home</h1>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+
+
+{{!-- 
+    1) Flash Clear Cookie
+--}}
+
+{{#if clearCookie }}
+<h4 id='flashClearCookie'> {{ clearCookie }} </h4>
+<script>
+setTimeout(() => {
+  $('#flashClearCookie').hide()
+}, 2000)
+</script>
+{{/if}}
+
+{{!-- 
+    2) Flash New Cookie
+--}}
+{{#if newCookie }}
+<h4 id='flashNewCookie'> {{ newCookie }} </h4>
+<script>
+setTimeout(() => {
+  $('#flashNewCookie').hide()
+}, 2000)
+</script>
+{{/if}}
+
+{{!-- 
+    3) Flash New ptiGato
+--}}
+{{#if newPtiGato }}
+<h4 id='flashNewPtiGato'> {{ newPtiGato }} </h4>
+<script>
+setTimeout(() => {
+  $('#flashNewPtiGato').hide()
+}, 2000)
+</script>
+{{/if}}
+
+{{!-- 
+    4) Flash Kill Cookie || ptiGAto
+--}}
+{{#if clearCookiePtiGato }}
+<h4 id='flashClearPtiGato'> {{ clearCookiePtiGato }} </h4>
+<script>
+setTimeout(() => {
+  $('#flashClearPtiGato').hide()
+}, 2000)
+</script>
+{{/if}}
+{{#if clearCookieCookie }}
+<h4 id='flashClearCookieCookie'> {{ clearCookieCookie }} </h4>
+<script>
+setTimeout(() => {
+  $('#flashClearCookieCookie').hide()
+}, 2000)
+</script>
+{{/if}}
+
+{{!-- 
+    1) Clear Tout les Cookie
+--}}
+<a href="/clearCookie">
+  <button>Supprimer tous les cookies</button>
+</a>
+
+{{!-- 
+    2) New Cookie
+--}}
+<a href="/newCookie">
+  <button>New Cookie</button>
+</a>
+
+{{!-- 
+    3) New ptiGato
+--}}
+<a href="/newPtiGato">
+  <button>New ptiGato</button>
+</a>
+
+
+{{!-- 
+    Kill cookie:
+      - Cookie
+      - ptiGAto
+ --}}
+<form action="/cookie" method="post">
+  <button type='submit' name='clearCookie' value="killCookie">Clear Cookie</button>
+  <button type='submit' name='clearPtiGato' value="killPtiGato">Clear ptiGato</button>
+</form>
+
+
+{{allCookie}}
+{{CSession}}
+{{CPtiGato}}
+{{CCookie}}
