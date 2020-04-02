@@ -19,31 +19,32 @@ module.exports = {
         console.log('Tout les cookies !')
         res.render('home', {
             allCookie: 'Tous les cookies, la confiance est parmis nous !',
-            CSession: 'cookie de la session',
-            CPtiGato: 'cookie "ptiGato"',
-            CCookie: 'cookie "cookie"'
+            idAllCookie: 'loveCookie',
+            CSession: 'Vous avez le cookie de la session ',
+            CPtiGato: 'et le cookie "ptiGato "',
+            CCookie: 'et le cookie "cookie "'
         })
 
     } else if (CSession && CPtiGato || CCookie) {
         if (CPtiGato) {
             console.log('Session + CPtigato')
             res.render('home', {
-                CSession: 'cookie de la session',
-                CPtiGato: 'cookie "ptiGato"'
+                CSession: 'Vous avez le cookie de la session ',
+                CPtiGato: 'et le cookie "ptiGato !"'
             })
 
         } else if (CCookie) {
             console.log('Session + CCookie')
             res.render('home', {
-                CSession: 'cookie de la session',
-                CCookie: 'cookie "cookie"'
+                CSession: 'Vous avez le cookie de la session ',
+                CCookie: 'et le cookie "cookie !"'
             })
         } else res.redirect('/')
 
     } else {
         console.log('Cookie Session Seulement')
         res.render('home', {
-            CSession: 'cookie de la session'
+            CSession: 'Vous avez le cookie de la session '
         })
 
     }
