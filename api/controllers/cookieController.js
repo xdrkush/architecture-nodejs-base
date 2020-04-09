@@ -5,10 +5,10 @@ module.exports = {
       res.clearCookie(`Session`)
       res.clearCookie(`ptiGato`)
       res.clearCookie(`Cookie`)
-      // res.render('home', {
-      //   clearCookie: 'Vous avez supprimer vos cookie, (sauf le cookie Session que vous avez renouvelez)'
-      // })
-      res.redirect('/')
+      res.render('home', {
+        clearCookie: 'Vous avez supprimer vos cookie, (sauf le cookie Session que vous avez renouvelez)'
+      })
+      // res.redirect('/')
     })
   },
   newCookie: async (req, res, next) => {
@@ -21,7 +21,10 @@ module.exports = {
     res.redirect('/')
   },
   newPtiGato: async (req, res, next) => {
-    res.cookie('ptiGato', { domain: '.ptiGAto', path: '/ptiGAto', secure: true, resave: false })
+    // Le cookie est valable pendant 2s 
+    // Temps exprimer en milisecond 
+    // Recharger la page et le cookie n'est plus actif
+    res.cookie('ptiGato', 'ptiGato', { domain: 'localhost', path: '/', httpOnly: true, maxAge: 2000 })
     // res.render('home', {
     //   newPtiGato: 'Un nouveau cookie "ptiGato" vous à été assigné',
     //   CPtiGato: 'cookie "ptiGato"'
@@ -30,6 +33,7 @@ module.exports = {
   },
   cookie: (req, res, next) => {
     console.log(req.body)
+
     if (req.body.clearCookie) {
       console.log('1')
       req.session.destroy(() => {
@@ -39,6 +43,7 @@ module.exports = {
         // })
         res.redirect('/')
       })
+
     } else if (req.body.clearPtiGato) {
       console.log('2')
       req.session.destroy(() => {
@@ -48,6 +53,7 @@ module.exports = {
         // })
         res.redirect('/')
       })
+
     } else {
       console.log('3')
       next()

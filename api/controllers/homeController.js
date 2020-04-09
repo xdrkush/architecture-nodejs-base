@@ -13,6 +13,8 @@ module.exports = {
         console.log(CPtiGato)
         console.log('4')
         console.log(CCookie)
+        console.log('5')
+        console.log(req.session.views)
 
     if (!CSession) res.redirect('/')
     else if (CSession && CPtiGato && CCookie) {
@@ -46,7 +48,6 @@ module.exports = {
         res.render('home', {
             CSession: 'Vous avez le cookie de la session '
         })
-
     }
   },
   post: (req, res) => {
