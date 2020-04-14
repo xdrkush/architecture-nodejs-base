@@ -12,9 +12,9 @@ const
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
     port = process.env.PORT || 3000,
-    swaggerUi = require('swagger-ui-express'),
+    // swaggerUi = require('swagger-ui-express'),
     // expressOasGenerator = require('express-oas-generator'),
-    swaggerDocument = require('./api/config/swagger.json'),
+    // swaggerDocument = require('./api/config/swagger.json'),
     morgan = require('morgan');
 
 // Morgan
@@ -36,6 +36,14 @@ mongoose.connect(urlDb, {
 
 const mongoStore = MongoStore(expressSession)
 
+//app.use
+app.use(express.json());
+app.use('/assets', express.static('public'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
 // Handlebars
 app.set('view engine', 'hbs');
 app.engine('hbs', hbs({
@@ -56,15 +64,8 @@ app.use(expressSession({
 
 }));
 
-//app.use
-app.use('/assets', express.static('public'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
-
 // Swagger
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const ROUTER = require('./api/router')
 app.use('/', ROUTER)

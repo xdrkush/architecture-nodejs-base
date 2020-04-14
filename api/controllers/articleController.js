@@ -4,6 +4,8 @@ const express = require('express'),
     path = require('path'),
     Article = require('../database/Article')
 
+const { check, validationResult } = require('express-validator');
+
 module.exports = {
     get: async(req, res) => {
         const dbArticle = await Article.find({})
@@ -13,12 +15,24 @@ module.exports = {
         })
     },
     post: async(req, res) => {
+        const errors = validationResult(req);
         const dbArticle = await Article.find({})
-        Article.create({
+
+        if (!errors.isEmpty()) {
+            console.log(errors)
+            return res.status(422).render('article', { errors: errors.array() });
+        }
+
+        Article
+            .create({
                 ...req.body
-            },
-            res.redirect('/article')
-        )
+            })
+            .then(article => {
+                res.render('article', {
+                    article: article,
+                    dbArticle: dbArticle
+                })
+            })
     },
     deleteOne: (req, res) => {
         Article.deleteOne({

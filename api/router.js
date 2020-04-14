@@ -3,6 +3,9 @@ const express = require('express'),
     router = express.Router(),
     path = require('path')
 
+const { check, validationResult } = require('express-validator');
+
+
 // Controller
 const homeController = require('./controllers/homeController'),
     articleController = require('./controllers/articleController'),
@@ -15,7 +18,12 @@ router.route('/')
 // Article
 router.route('/article')
     .get(articleController.get)
-    .post(articleController.post)
+    .post([
+        check('email')
+            .isEmail(),
+        check('title')
+            .isLength({ min: 5 }).withMessage('Le titre doit comporter minimum 5 caractères ;)')
+    ], articleController.post)
     .delete(articleController.deleteAll)
 
 // Article ID

@@ -12,6 +12,7 @@ const ArticleSchema = new mongoose.Schema({
     // Première variable (basique)
     title: String,
     price: String,
+    email: String,
     isSuspend: Boolean,
     description: String,
     imgArticle: String,

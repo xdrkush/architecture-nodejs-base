@@ -2,10 +2,21 @@
 
 <div>
     <h2><u>Liste Article:</u></h2>
+
+    {{!-- On demande SI il reçoit la variable errors --}}
+    {{#if errors}}
+        {{!-- On parcours le tableau des errors --}}
+        {{#each errors}}
+            {{!-- On affiche la variable que l'on veux afficher --}}
+            <h4 style='text-color: red'>{{msg}}</h4>
+        {{/each}}
+    {{/if}}
+
     <div class="flx">
         {{#each dbArticle }}
         <div class="itm">
             <h3>Titre: {{ title }}</h3>
+            <p>{{ email }}</p>
             <form action="/article/{{ this.id }}/?_method=DELETE" method="post">
             <button type="submit">Effacer</button>
         </form>
@@ -21,8 +32,9 @@
 </div>
 
 <div>
-    <form action="/article" method="post">
+    <form action="/article" method="post" enctype="application/x-www-form-urlencoded">
         <input type="text" name="title" placeholder="Title">
+        <input type="email" name="email" placeholder="E-mail">
         <button type="submit">Confirmer</button>
     </form>
 </div>
