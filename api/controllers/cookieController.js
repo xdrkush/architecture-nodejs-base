@@ -24,7 +24,7 @@ module.exports = {
     // Le cookie est valable pendant 2s 
     // Temps exprimer en milisecond 
     // Recharger la page et le cookie n'est plus actif
-    res.cookie('ptiGato', 'ptiGato', { domain: 'localhost', path: '/', httpOnly: true, maxAge: 2000 })
+    res.cookie('ptiGato', 'ptiGato', { domain: 'localhost', path: '/', httpOnly: true, maxAge: 200000 })
     // res.render('home', {
     //   newPtiGato: 'Un nouveau cookie "ptiGato" vous à été assigné',
     //   CPtiGato: 'cookie "ptiGato"'

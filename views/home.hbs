@@ -3,6 +3,10 @@
 {{!-- Import de Jquery --}}
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 
+{{#if cook }}
+  <h4>cook: {{ cook.path }}</h4>
+{{/if}}
+
 {{!-- Style gerer grace au jquery en bas --}}
 <style>
   #{{ idAllCookie }} {

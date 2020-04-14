@@ -13,13 +13,12 @@ module.exports = {
         console.log(CPtiGato)
         console.log('4')
         console.log(CCookie)
-        console.log('5')
-        console.log(req.session.views)
 
     if (!CSession) res.redirect('/')
     else if (CSession && CPtiGato && CCookie) {
         console.log('Tout les cookies !')
         res.render('home', {
+            cook: CCookie,
             allCookie: 'Tous les cookies, la confiance est parmis nous !',
             idAllCookie: 'loveCookie',
             CSession: 'Vous avez le cookie de la session ',
