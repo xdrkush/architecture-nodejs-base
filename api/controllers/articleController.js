@@ -52,25 +52,24 @@ module.exports = {
   },
   put: async(req, res, next) => {
     const dbArticle = await Article.findById(req.params.id),
-      query = { _id: req.params.id }
-    pathImg = path.resolve("public/images/" + dbArticle.name)
+      query = { _id: req.params.id },
+      noImg = req.files.length === 0
 
+    console.log('fzefezr')
+    console.log(req.body)
     console.log(req.files)
+    console.log('fonction length')
+    console.log(noImg)
 
-    if (!req.files) {
-      if (req.body.title) {
-        console.log('edit title (no file)')
-        console.log(dbArticle)
-
-        Article.updateOne(query, {
-            title: req.body.title
-          },
-          (err) => {
-            if (err) res.redirect('/')
-            else res.redirect('/article')
-          })
-      }
-      next()
+    if (req.body.title && noImg) {
+      console.log('edit title (no file)')
+      Article.updateOne(query, {
+          title: req.body.title
+        },
+        (err) => {
+          if (err) console.log(err)
+          else res.redirect('/article')
+        })
     } else if (req.files) {
       const dbArticle = await Article.findById(req.params.id),
         files = req.files,
@@ -93,11 +92,13 @@ module.exports = {
           })
         }
       }
-
+      console.log('Array Files')
       console.log(arrayFiles)
+      console.log('ExistFiles')
+      console.log(existImg)
 
       Article.updateOne(query, {
-          ...req.body,
+        ...req.body,
           galleryImg: arrayFiles
         },
         (err) => {
@@ -107,23 +108,24 @@ module.exports = {
               if (existImg) {
                 fs.unlink(path.resolve('public/images/' + existImg[i].name),
                   (err) => {
-                    if (err) console.log(err)
-                    else console.log('galleryImg Supprimée') && res.redirect('/article')
+                    if (err) throw err
                   })
               }
             }
+            res.redirect('/article')
           } else {
-            res.send(err)
+            return res.send(err)
           }
         })
-      }
+    }
   },
-  deleteOne: async(req, res) => {
+  deleteOne: async(req, res, next) => {
     const dbArticle = await Article.findById(req.params.id),
-      query = { _id: req.params.id }
-    files = dbArticle.galleryImg
+      query = { _id: req.params.id },
+      files = dbArticle.galleryImg
 
     console.log(dbArticle);
+    console.log('1')
 
     Article.deleteOne(
       query,
@@ -134,11 +136,11 @@ module.exports = {
             if (files) {
               fs.unlink(path.resolve('public/images/' + files[i].name),
                 (err) => {
-                  if (err) console.log(err)
-                  else console.log('galleryImg Supprimée') && res.redirect('/article')
+                  if (err) throw err
                 })
             }
           }
+          res.redirect('/article')
         } else {
           res.send(err)
         }

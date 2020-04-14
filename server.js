@@ -26,6 +26,14 @@ mongoose.connect(urlDb, {
 
 const mongoStore = MongoStore(expressSession)
 
+// express-static
+app.use('/assets', express.static('public'));
+// Body-parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
 // Handlebars
 app.set('view engine', 'hbs');
 app.engine('hbs', hbs({
@@ -46,13 +54,7 @@ app.use(expressSession({
 
 }));
 
-// express-static
-app.use('/assets', express.static('public'));
-// Body-parser
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+
 
 const ROUTER = require('./api/router')
 app.use('/', ROUTER)

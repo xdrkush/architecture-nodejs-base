@@ -4,12 +4,18 @@
     <h2><u>Liste Article:</u></h2>
     <div class="flx">
         {{#each dbArticle }}
-        <div class="itm">
+        <div class="itm" style='border: 1px solid purple; padding: 5px'>
             <h3>Titre: {{ title }}</h3>
+            <p>ID: {{ _id }}</p>
             {{#each galleryImg }}
                 <img src="{{ filename }}" style="heigth: 150px; width: 150px">
+                <form action="/article/{{ ../this._id }}/?_method=PUT" method="post" enctype="multipart/form-data">
+                    <input type="file" name="inputArticleArray">
+                    <button type="submit">Editer</button>
+                </form>
             {{/each}}
             {{!-- Ne pas oublier leenctype="multipart/form-data"--}}
+            <h4>Editer toutes les images ?</h4>
             <form action="/article/{{ this._id }}/?_method=PUT" method="post" enctype="multipart/form-data">
                 <input type="text" name="title" placeholder="Title">
                 </br>
