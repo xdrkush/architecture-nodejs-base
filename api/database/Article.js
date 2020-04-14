@@ -15,9 +15,11 @@ const ArticleSchema = new mongoose.Schema({
     isSuspend: Boolean,
     description: String,
     imgArticle: String,
+    galleryImg: [],
     imgDescr: String,
     promo: Number,
     taille: String,
+    name: String,
     isVerified: {
         type: Boolean,
         default: false

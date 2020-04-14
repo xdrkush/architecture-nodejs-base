@@ -6,9 +6,19 @@
         {{#each dbArticle }}
         <div class="itm">
             <h3>Titre: {{ title }}</h3>
-            <form action="/article/{{ this.id }}/?_method=DELETE" method="post">
-            <button type="submit">Effacer</button>
-        </form>
+            {{#each galleryImg }}
+                <img src="{{ filename }}" style="heigth: 150px; width: 150px">
+            {{/each}}
+            {{!-- Ne pas oublier leenctype="multipart/form-data"--}}
+            <form action="/article/{{ this._id }}/?_method=PUT" method="post" enctype="multipart/form-data">
+                <input type="text" name="title" placeholder="Title">
+                </br>
+                <input type="file" name="inputArticleArray" multiple>
+                <button type="submit">Editer</button>
+            </form>
+            <form action="/article/{{ this._id }}/?_method=DELETE" method="post">
+                <button type="submit">Effacer</button>
+            </form>
         </div>
         {{/each }}
     </div>
@@ -21,8 +31,14 @@
 </div>
 
 <div>
-    <form action="/article" method="post">
-        <input type="text" name="title" placeholder="Title">
+    <h4>Creer un article</h>
+    {{!-- Ne pas oublier le en enctype="multipart/form-data"--}}
+    <form action="/article" method="post" enctype="multipart/form-data">
+        <input type="text" name="title" placeholder="Title" required>
+        </br>
+        {{!-- Pour l'image --}}
+        <input type="file" name="inputArticleArray" multiple required>
+        </br>
         <button type="submit">Confirmer</button>
     </form>
 </div>

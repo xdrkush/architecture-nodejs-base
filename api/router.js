@@ -1,31 +1,30 @@
 // Import
 const express = require('express'),
-    router = express.Router(),
-    path = require('path')
+      router  = express.Router(),
+      upload  = require('./config/multer')
 
 // Controller
-const homeController = require('./controllers/homeController'),
-    articleController = require('./controllers/articleController'),
-    contactController = require('./controllers/contactController')
+const homeController = require('./controllers/homeController')
+    , articleController = require('./controllers/articleController')
+    , contactController = require('./controllers/contactController')
 
 // Home
 router.route('/')
-    .get(homeController.get)
+  .get(homeController.get)
 
 // Article
 router.route('/article')
-    .get(articleController.get)
-    .post(articleController.post)
-    .delete(articleController.deleteAll)
+  .get(articleController.get)
+  .post(upload.array('inputArticleArray', 3), articleController.post)
+  .delete(articleController.deleteAll)
 
 // Article ID
 router.route('/article/:id')
-    .delete(articleController.deleteOne)
-
-
+  .put(upload.array('inputArticleArray', 3), articleController.put)
+  .delete(articleController.deleteOne)
 
 // Contact
 router.route('/contact')
-    .get(contactController.get)
+  .get(contactController.get)
 
-module.exports = router;
+module.exports = router
