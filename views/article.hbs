@@ -7,38 +7,46 @@
         <div class="itm" style='border: 1px solid purple; padding: 5px'>
             <h3>Titre: {{ title }}</h3>
             <p>ID: {{ _id }}</p>
+
             {{!-- Formulaire Ajouter une image --}}
             <form action="/article/{{ this._id }}/?_method=PUT" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="addImg" value='{{ name }}'>
                 <input type="file" name="inputArticleArray">
                 <button type="submit">Ajouter une Img</button>
             </form>
+
             {{#each galleryImg }}
                 {{!-- Image --}}
                 <img src="{{ filename }}" style="heigth: 150px; width: 150px">
+
                 {{!-- Formulaire Editer une image --}}
                 <form action="/article/{{ ../this._id }}/?_method=PUT" method="post" enctype="multipart/form-data">
                     <input type="file" name="inputArticleArray">
                     <input type="hidden" name="exImg" value='{{ name }}'>
                     <button type="submit">Editer</button>
                 </form>
+
                 {{!-- Formulaire Delete une image --}}
                 <form action="/article/{{ ../this._id }}/?_method=PUT" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="deleteImg" value='{{ name }}'>
                     <button type="submit">Delete Img</button>
                 </form>
+
             {{/each}}
             {{!-- Ne pas oublier leenctype="multipart/form-data"--}}
             <h4>Editer toutes les images ?</h4>
+
             <form action="/article/{{ this._id }}/?_method=PUT" method="post" enctype="multipart/form-data">
                 <input type="text" name="title" placeholder="Title">
                 </br>
                 <input type="file" name="inputArticleArray" multiple>
                 <button type="submit">Editer</button>
             </form>
+
             <form action="/article/{{ this._id }}/?_method=DELETE" method="post">
                 <button type="submit">Effacer</button>
             </form>
+            
         </div>
         {{/each }}
     </div>
