@@ -76,6 +76,12 @@ module.exports = {
     console.log(req.body)
     console.log('Req.Files')
     console.log(req.files)
+    console.log('noImg')
+    console.log(noImg)
+    console.log('singleImg')
+    console.log(singleImg)
+    console.log('multiple')
+    console.log(multiple)
 
     if (req.body.title && noImg) {
       /*
