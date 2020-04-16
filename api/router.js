@@ -22,7 +22,13 @@ router.route('/article')
         check('email')
             .isEmail(),
         check('title')
-            .isLength({ min: 5 }).withMessage('Le titre doit comporter minimum 5 caractères ;)')
+            .isLength({ min: 4 })
+            .withMessage('Le titre doit comporter minimum 5 caractères ;)'),
+        check('password')
+            .isLength({ min: 6 })
+            .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/, "i")
+            .withMessage('Votre mot de passe doit contenir au moins un caractère spécial !')
+        
     ], articleController.post)
     .delete(articleController.deleteAll)
 
