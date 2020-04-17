@@ -4,7 +4,7 @@
     "description": "erfe",
     "main": "server.js",
     "scripts": {
-        "test": "nodemon --exec 'mocha ./test/*.js'",
+        "test": "nodemon --exec 'mocha ./mocha/*.js'",
         "tu": "nodemon --exec 'mocha ./test/*.js --timeout 10000 -R min'",
         "start": "nodemon server.js",
         "reinstall": "sudo rm -r node_modules* && npm i && npm start"
