@@ -1,18 +1,18 @@
 <h1>Home</h1>
 
 <!-- CDN -->
-  <script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-  <script src="https://www.vantajs.com/vendor/three.r95.min.js"></script>
+{{!-- Jquery --}}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
-  <!-- Birds -->
-  <h2>Birds</h2>
-  <div id='birds' style='width: 95%; height: 200px'></div>
-  <!-- <script src="./dist/vanta.birds.min.js"></script> -->
-  <script src='https://www.vantajs.com/dist/vanta.birds.min.js'></script>
-  <script>
+{{!-- Three --}}
+<script src="https://www.vantajs.com/vendor/three.r95.min.js"></script>
+
+<!-- Birds -->
+<h2>Birds</h2>
+<div id='birds'></div>
+<script src='https://www.vantajs.com/dist/vanta.birds.min.js'></script>
+<script>
   VANTA.BIRDS({
     el: "#birds",
     mouseControls: true,
@@ -22,5 +22,5 @@
     scale: 1.00,
     scaleMobile: 1.00
   })
-  </script>
-  <!-- /Birds -->
+</script>
+<!-- /Birds -->
