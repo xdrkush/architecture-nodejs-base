@@ -1,5 +1,13 @@
 <h1>Article</h1>
 
+{{#if errors }}
+    <h4 style='color: red'> {{ errors }} </h4>
+{{/if }}
+
+{{#if success }}
+  <h4 style='color: green'> {{ success }} </h4>
+{{/if }}
+
 <div>
     <h2><u>Liste Article:</u></h2>
     <div class="flx">

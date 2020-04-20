@@ -7,6 +7,7 @@ const
     app = express(),
     hbs = require('express-handlebars'),
     expressSession = require('express-session'),
+    flash = require('express-flash'),
     mongoose = require('mongoose'),
     MongoStore = require('connect-mongo'),
     bodyParser = require('body-parser'),
@@ -45,7 +46,6 @@ app.engine('hbs', hbs({
 
 // Express-session
 app.use(expressSession({
-
     secret: 'securite',
     name: 'ptiGato',
     saveUninitialized: true,
@@ -56,12 +56,20 @@ app.use(expressSession({
 
 }));
 
+// Express-Flash
+app.use(flash())
+
 //app.use
 app.use('/assets', express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+
+app.use('*', (req, res, next) => {
+    console.log('fzef')
+    next()
+})
 
 // Swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
