@@ -1,7 +1,6 @@
 // Import
 const express = require('express'),
-    router = express.Router(),
-    path = require('path')
+    router = express.Router()
 
 // Controller
 const homeController = require('./controllers/homeController'),
@@ -21,8 +20,6 @@ router.route('/article')
 // Article ID
 router.route('/article/:id')
     .delete(articleController.deleteOne)
-
-
 
 // Contact
 router.route('/contact')

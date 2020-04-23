@@ -36,6 +36,10 @@ mongoose.connect(urlDb, {
 
 const mongoStore = MongoStore(expressSession)
 
+// Back Up Auto
+const backupManual = require('./BackUp/Controllers/backupManual')
+const backupAuto = require('./BackUp/Controllers/backupAuto')
+
 // Handlebars
 app.set('view engine', 'hbs');
 app.engine('hbs', hbs({
@@ -68,6 +72,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const ROUTER = require('./api/router')
 app.use('/', ROUTER)
+
 
 // app.use((req, res) => {
 //     res.render('err404')
