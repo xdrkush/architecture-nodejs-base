@@ -8,7 +8,8 @@ module.exports = {
     post: async(req, res) => {
         console.log(req.body)
         Comment.create({
-                ...req.body
+                ...req.body,
+                date: Date.now()
             },
             res.redirect('/article')
         )
