@@ -11,6 +11,7 @@ const homeController = require('./controllers/homeController'),
 // Home
 router.route('/')
     .get(homeController.get)
+    .post(homeController.post)
 
 // Article
 router.route('/article')
