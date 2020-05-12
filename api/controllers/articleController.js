@@ -7,19 +7,40 @@ const express = require('express'),
 module.exports = {
     get: async(req, res) => {
         const dbArticle = await Article.find({})
-        console.log(dbArticle);
+        // console.log(dbArticle);
         res.render('article', {
-            dbArticle
+            dbArticle: dbArticle
         })
     },
     post: async(req, res) => {
         const dbArticle = await Article.find({})
         Article.create({
                 ...req.body
-            },
-            res.redirect('/article')
-        )
+        })
+        res.render('article', {
+            dbArticle: dbArticle
+        })
     },
+    put: async (req, res) => {
+        // Probleme suppression (plusieur image Conflit )
+        const dbArticle = await Article.findById(req.params.id),
+              query = {_id: req.params.id}
+          pathImg = path.resolve("public/images/" + dbArticle.name)
+    
+        console.log(req.file)
+    
+        Article.updateOne( query, {
+            title: req.body.title
+          },
+          (err) => {
+            if (err) res.redirect('/')
+            else {
+                res.render('article', {
+                    dbArticle: dbArticle
+                })
+            }
+          })
+      },
     deleteOne: (req, res) => {
         Article.deleteOne({
                 _id: req.params.id

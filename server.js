@@ -64,7 +64,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 // Swagger
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const ROUTER = require('./api/router')
 app.use('/', ROUTER)
@@ -76,3 +76,5 @@ app.use('/', ROUTER)
 app.listen(port, () => {
     console.log("le serveur tourne sur le prt: " + port);
 });
+
+module.exports = app

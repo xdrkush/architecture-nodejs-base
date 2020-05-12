@@ -20,6 +20,7 @@ router.route('/article')
 
 // Article ID
 router.route('/article/:id')
+    .put(articleController.put)
     .delete(articleController.deleteOne)
 
 
