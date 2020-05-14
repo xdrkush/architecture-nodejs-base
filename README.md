@@ -20,7 +20,7 @@ sudo npm i nodemon -g
 sudo mongod
 ```
 
-# Installer L'appli
+# Installer le dossier
 
 ```
 git clone https://github.com/xdrkush/architecture-nodejs-base.git
@@ -28,5 +28,8 @@ cd architecture-nodejs-base
 npm i
 npm start
 ```
-
-## J'espère que sa pourra vous aidez.
+Pour changer de Branch
+```
+git checkout LENOMDELABRANCH
+```
+# J'espère que ça pourra vous aidez.
