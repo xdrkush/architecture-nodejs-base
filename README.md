@@ -3,6 +3,9 @@
 ## Tuto base NodeJS
 
 Dans ce projet vous allez trouvez pas mal de petite source pour commencer sur Node JS avec NPM
+L'objectif est bien de partir de l'architecture-node-js branch master pour lui greffé de multiple Module
+
+Et de biensur vous en proposer des tutos simples d'utilisation
 
 # Pré-requis
 

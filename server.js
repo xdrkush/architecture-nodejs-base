@@ -2,6 +2,7 @@
  * App.js
  ******************************/
 
+// Import de module
 const
     express = require('express'),
     app = express(),
@@ -39,7 +40,6 @@ app.engine('hbs', hbs({
 
 // Express-session
 app.use(expressSession({
-
     secret: 'securite',
     name: 'ptiGato',
     saveUninitialized: true,
@@ -47,7 +47,6 @@ app.use(expressSession({
     store: new mongoStore({
         mongooseConnection: mongoose.connection
     })
-
 }));
 
 //app.use
