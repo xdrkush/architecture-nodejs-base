@@ -12,6 +12,9 @@ Et de biensur vous en proposer des tutos simples d'utilisation
 NodeJS v10
 Nodemon
 
+# Installer Node JS
+https://github.com/nodesource/distributions/blob/master/README.md
+
 # Installer Nodemon
 ```
 sudo npm i nodemon -g
