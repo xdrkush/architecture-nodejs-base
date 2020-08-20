@@ -33,6 +33,7 @@
     },
     "devDependencies": {
         "handlebars": "^4.5.0",
+        "morgan": "^1.9.1",
         "nodemon": "^2.0.2"
     }
 }
