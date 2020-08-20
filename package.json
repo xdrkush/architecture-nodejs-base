@@ -1,7 +1,7 @@
 {
     "name": "architecture-nodejs-base",
     "version": "1.0.0",
-    "description": "erfe",
+    "description": "Tuto nodejs Basic",
     "main": "server.js",
     "scripts": {
         "test": "nodemon --exec 'mocha ./test/*.js'",
