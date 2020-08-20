@@ -11,6 +11,7 @@ const express = require('express'),
  * Controller
  *************/ 
 module.exports = {
+    // Method Get
     get: async(req, res) => {
         const dbArticle = await Article.find({})
         console.log(dbArticle);
@@ -18,6 +19,7 @@ module.exports = {
             dbArticle
         })
     },
+    // Method Post
     post: async(req, res) => {
         const dbArticle = await Article.find({})
         Article.create({
@@ -26,6 +28,7 @@ module.exports = {
             res.redirect('/article')
         )
     },
+    // Method Delete One
     deleteOne: (req, res) => {
         Article.deleteOne({
                 _id: req.params.id
@@ -38,6 +41,7 @@ module.exports = {
                 }
             })
     },
+    // Method Delete All
     deleteAll: (req, res) => {
         Article.deleteMany((err) => {
             if (!err) {

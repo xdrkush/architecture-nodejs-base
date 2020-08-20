@@ -3,11 +3,8 @@
  * Controller
  *************/ 
 module.exports = {
+    // Method Get
     get: (req, res) => {
         res.render('home')
-    },
-    post: (req, res) => {
-        console.log('coucou');
-
     }
 }
