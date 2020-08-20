@@ -7,7 +7,8 @@
         "test": "nodemon --exec 'mocha ./test/*.js'",
         "tu": "nodemon --exec 'mocha ./test/*.js --timeout 10000 -R min'",
         "start": "nodemon server.js",
-        "reinstall": "sudo rm -r node_modules* && npm i && npm start"
+        "reinstall": "sudo rm -r node_modules* && npm i && npm start",
+        "sass": "sass --watch ./public/css/sass/style.sass:./public/css/style.css"
     },
     "repository": {
         "type": "git",

@@ -1,9 +1,15 @@
-// Import
+
+/*
+ * Import Module
+ ****************/ 
 const express = require('express'),
     router = express.Router(),
     path = require('path'),
     Article = require('../database/Article')
 
+/*
+ * Controller
+ *************/ 
 module.exports = {
     get: async(req, res) => {
         const dbArticle = await Article.find({})
