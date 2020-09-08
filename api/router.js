@@ -1,20 +1,13 @@
-/*
- * Import Module
- ****************/ 
+// Import
 const express = require('express'),
     router = express.Router(),
     path = require('path')
 
-/*
- * Controller
- *************/ 
+// Controller
 const homeController = require('./controllers/homeController'),
     articleController = require('./controllers/articleController'),
-    contactController = require('./controllers/contactController')
-
-/*
- * Router
- ***********/
+    adminController = require('./controllers/adminController'),
+    contactController = require('./controllers/contactController');
 
 // Home
 router.route('/')
@@ -23,21 +16,14 @@ router.route('/')
 // Article
 router.route('/article')
     .get(articleController.get)
-    .post(articleController.post)
-    .delete(articleController.deleteAll)
-
-// Article ID
-router.route('/article/:id')
-    .delete(articleController.deleteOne)
 
 // Contact
 router.route('/contact')
     .get(contactController.get)
 
-/***********
- * / Router
- */
+// Admin
+// 2nd Layout 
+router.route('/admin')
+    .get(adminController.get)
 
- 
-// on export router pour le récupérer dans ../server.js
 module.exports = router;

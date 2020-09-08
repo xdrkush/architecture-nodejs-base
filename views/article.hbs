@@ -1,42 +1,4 @@
-{{!-- 
-    Page Article
-    /article
---}}
-
 <h1>Article</h1>
 
-<div>
-    <h2><u>Liste Article:</u></h2>
-    {{!-- 
-        Dans le block en dessous ce trouve la boucle des articles
-    --}}
-    <div class="flx">
-        {{#each dbArticle }}
-        <div class="itm">
-            <h3>Titre: {{ title }}</h3>
-            <form action="/article/{{ this.id }}/?_method=DELETE" method="post">
-            <button type="submit">Effacer</button>
-        </form>
-        </div>
-        {{/each }}
-    </div>
-    {{!-- 
-        Dans le block en dessous le boutton de suppression de tout les articles
-    --}}
-    <div class="itm">
-        <h5>Tous supprimer ?</h5>
-        <form action="/article/?_method=DELETE" method="post">
-            <button type="submit">Effacer</button>
-        </form>
-    </div>
-</div>
+{{> article/card }}
 
-<div>
-    {{!-- 
-        Dans le block en dessous le boutton d'ajout d'article
-    --}}
-    <form action="/article" method="post">
-        <input type="text" name="title" placeholder="Title">
-        <button type="submit">Confirmer</button>
-    </form>
-</div>
