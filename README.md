@@ -25,6 +25,7 @@ Plusieurs branch à votre disposition:
  - nodemailer (gérer les mail (en cours))
  - passport-google (inscription google API (en cours))
  - req.flash (gerer req.flash, plusieurs manières proposer (en cours))
+ - secondLayout (gerer un deuxieme layout avec Handlebars)
  - validator (gerer validator.js, base (en cours))
  - vanta (intégrer vanta.js (en cours))
 
