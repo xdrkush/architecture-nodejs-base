@@ -8,7 +8,7 @@ L'objectif est bien de partir de l'architecture-node-js branch master pour lui g
 Et de biensur vous en proposer des tutos simples d'utilisation.
 
 Plusieurs branch à votre disposition:
- - master (branch cloner pour réaliser un module)
+ - master (branch cloner pour réaliser un module OK)
  - Recup-DB-Atlas (sortir un json de la db complete (en cours))
  - accept-cookie (voir comment intéragir avec les cookies (en cours))
  - backup (comment réaliser un backup (en cours))
@@ -24,30 +24,35 @@ Plusieurs branch à votre disposition:
  - multer-array (gérer un tableau d'image avec une DB (en cours))
  - nodemailer (gérer les mail (en cours))
  - passport-google (inscription google API (en cours))
+ - populate (Fonction MongoDB de relation entre Model (en cours))
  - req.flash (gerer req.flash, plusieurs manières proposer (en cours))
  - secondLayout (gerer un deuxieme layout avec Handlebars)
  - validator (gerer validator.js, base (en cours))
  - vanta (intégrer vanta.js (en cours))
 
 # Pré-requis
+  - NodeJS v10.0.0
+  - MongoDB Local ou Cloud (db: apiRest)
+  - Nodemon
+  - (sass optionel)
 
-NodeJS v10
-MongoDB Local ou Cloud (db: apiRest)
-Nodemon
+Pour pouvoir gérer facilement vos versions de npm grâce à NVM:
+  - https://github.com/nvm-sh/nvm
 
 # Installer Nodemon
 ```
 sudo npm i nodemon -g
 ```
 
-# Lancer Mongo DB
-
+# Lancer Mongo DB (local)
 ```
 sudo mongod
 ```
 
-# Installer le dossier
+Vous pouvez creer votre DB Cloud sur MongoAtlas Gratuitement (vous serez obligez de creer un compte)
+  - https://www.mongodb.com/cloud/atlas
 
+# Installer le dossier
 ```
 git clone https://github.com/xdrkush/architecture-nodejs-base.git
 cd architecture-nodejs-base

@@ -3,6 +3,7 @@
  ******************************/
 
 // Import de module
+// à vous d'allez jettez un oeil sur la doc de chaque module sur: https://www.npmjs.com/
 const
     express = require('express'),
     app = express(),
@@ -22,13 +23,13 @@ app.use(morgan('dev'))
 app.use(methodOverride('_method'))
 
 // Mongoose
+// Ceci est un tuto sinon vous devez cacher cette information de la ligne juste en dessous
 const urlDb = 'mongodb://localhost:27017/apiRest'
-
 mongoose.connect(urlDb, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
-
+// save session avec MongoDB
 const mongoStore = MongoStore(expressSession)
 
 // Handlebars
@@ -49,8 +50,11 @@ app.use(expressSession({
     })
 }));
 
-//app.use
+// Express Static (Permet de pointer un dossier static sur une URL)
+// Exemple: le chemin /assets nous donnera accès au dossier public
 app.use('/assets', express.static('public'));
+
+// Body Parser qui nous permet de parser des data d'une req a une autre
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
