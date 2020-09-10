@@ -1,9 +1,10 @@
+
+/*
+ * Controller
+ *************/ 
 module.exports = {
+    // Method Get
     get: (req, res) => {
         res.render('contact')
-    },
-    post: (req, res) => {
-        console.log('coucou');
-
     }
 }
