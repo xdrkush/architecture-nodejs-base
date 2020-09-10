@@ -1,33 +1,21 @@
+{{!-- 
+    Page: ArticleID
+    /article/:id
+--}}
+
 <h1>Article ID</h1>
 
-<div>
-    <h2><u>Mon Super Article</u></h2>
-</div>
+{{!-- 
+    Block de description de l'article
+--}}
+{{> articleID/descrId }}
 
-<div>
-    <h2><u>Titre: {{ artID.title }}</u></h2>
-    <h2><u>ID: {{ artID._id }}</u></h2>
-</div>
+{{!-- 
+    Block Pour ajouter un Commentaire
+--}}
+{{> articleID/addComment }}
 
-<div>
-    <h2><u>Ajouter un commentaire</u></h2>
-    <form action="/comment" method="post">
-        <label>Autheur</label>
-        <input type="text" name="author" placeholder="Autheur">
-        <label>Message</label>
-        <input type="hidden" name="articleID" value="{{artID._id}}">
-        <textarea name="message"></textarea>
-        <button type="submit">Confirmer</button>
-    </form>
-</div>
-
-<div class="itm">
-    <h2><u>Liste des commentaire</u></h2>
-    {{#each comment }}
-    <div class="itm">
-        <h3>par: {{ author }}</h3>
-        <p>{{ message }}</p>
-        <p>{{ articleID }}</p>
-    </div>
-    {{/each }}
-</div>
+{{!-- 
+    Block de la liste de commentaire
+--}}
+{{> articleID/listComment }}

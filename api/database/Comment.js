@@ -6,10 +6,8 @@
 // Import de Mongoose
 const mongoose = require('mongoose')
 
-// Création de notre Shéma (Model)
-// c'est le Model de (Model)
+// Création de notre Schéma (Comment)
 const CommentSchema = new mongoose.Schema({
-    // Première variable (basique)
     author: String,
     message: String,
     isSuspend: Boolean,
