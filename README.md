@@ -8,11 +8,11 @@ L'objectif est bien de partir de l'architecture-node-js branch master pour lui g
 Et de biensur vous en proposer des tutos simples d'utilisation.
 
 Plusieurs branch à votre disposition:
- - master (branch cloner pour réaliser un module OK)
+ - master (branch cloner pour réaliser un module (OK))
  - Recup-DB-Atlas (sortir un json de la db complete (en cours))
  - accept-cookie (voir comment intéragir avec les cookies (en cours))
  - backup (comment réaliser un backup (en cours))
- - bootstrap (bootstrap est intégrer de façon a pouvoir ajouter des modules (en cours))
+ - bootstrap (bootstrap est intégrer de façon a pouvoir ajouter des modules (OK))
  - commentary ID (ajouter des commentaire a un article (en cours))
  - page ID (réaliser un page ID liaison avec un article défini (en cours))
  - cron (réaliser une tache cron,répétitive (en cours))
