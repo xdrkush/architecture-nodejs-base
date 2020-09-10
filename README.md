@@ -24,7 +24,7 @@ Plusieurs branch à votre disposition:
  - page ID (réaliser un page ID liaison avec un article défini et c'est commentaire (OK))
  - passport-google (inscription google API (en cours))
  - populate (Fonction MongoDB de relation entre Model (en cours))
- - req.flash (gerer req.flash, plusieurs manières proposer (en cours))
+ - reqFlash (gerer req.flash, plusieurs manières proposer (OK))
  - secondLayout (gerer un deuxieme layout avec Handlebars)
  - validator (gerer validator.js, base (en cours))
  - vanta (intégrer vanta.js (en cours))
