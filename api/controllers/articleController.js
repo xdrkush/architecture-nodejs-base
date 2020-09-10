@@ -1,10 +1,8 @@
-// Import
-const express = require('express'),
-    router = express.Router(),
-    path = require('path')
-
+/*
+ * Controller
+ *************/
 module.exports = {
-    get: async(req, res) => {
+    get: (req, res) => {
         res.render('article')
     }
 }
