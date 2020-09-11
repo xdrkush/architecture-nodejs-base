@@ -25,7 +25,7 @@ Plusieurs branch à votre disposition:
  - passport-google (inscription google API (en cours))
  - populate (Fonction MongoDB de relation entre Model (en cours))
  - reqFlash (gerer req.flash, plusieurs manières proposer (OK))
- - secondLayout (gerer un deuxieme layout avec Handlebars)
+ - secondLayout (gerer un deuxieme layout avec Handlebars(OK))
  - validator (gerer validator.js, base (en cours))
  - vanta (intégrer vanta.js (en cours))
 
