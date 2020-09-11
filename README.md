@@ -1,58 +1,88 @@
 # architecture-nodejs-base
 
-## Tuto base NodeJS
-
-Dans ce projet vous allez trouvez pas mal de petite source pour commencer sur Node JS avec NPM
-L'objectif est bien de partir de l'architecture-node-js branch master pour lui greffé de multiple Module.
-
-Et de biensur vous en proposer des tutos simples d'utilisation.
-
-Plusieurs branch à votre disposition:
- - master (branch cloner pour réaliser un module)
- - Recup-DB-Atlas (sortir un json de la db complete (en cours))
- - accept-cookie (voir comment intéragir avec les cookies (en cours))
- - backup (comment réaliser un backup (en cours))
- - bootstrap (bootstrap est intégrer de façon a pouvoir ajouter des modules (en cours))
- - commentary ID (ajouter des commentaire a un article (en cours))
- - page ID (réaliser un page ID liaison avec un article défini (en cours))
- - cron (réaliser une tache cron,répétitive (en cours))
- - image (gèrer les images (en cours))
- - init (branch d'orgine)
- - jwt (gerer les jwt, json web token (en cours))
- - light (branch la plus light)
- - mocha (gerer les test unitaire avec mocha, ... (en cours))
- - multer-array (gérer un tableau d'image avec une DB (en cours))
- - nodemailer (gérer les mail (en cours))
- - passport-google (inscription google API (en cours))
- - req.flash (gerer req.flash, plusieurs manières proposer (en cours))
- - validator (gerer validator.js, base (en cours))
- - vanta (intégrer vanta.js (en cours))
-
 # Pré-requis
+  - NodeJS v10.0.0
+  - MongoDB Local ou Cloud (db: apiRest)
+  - Nodemon
+  - (sass optionel)
 
-NodeJS v10
-MongoDB Local ou Cloud (db: apiRest)
-Nodemon
+Pour pouvoir gérer facilement vos versions de npm grâce à NVM:
+  - https://github.com/nvm-sh/nvm
+
 
 # Installer Nodemon
 ```
 sudo npm i nodemon -g
 ```
 
-# Lancer Mongo DB
-
-```
-sudo mongod
-```
-
 # Installer le dossier
-
 ```
 git clone https://github.com/xdrkush/architecture-nodejs-base.git
 cd architecture-nodejs-base
 npm i
 npm start
 ```
+
+## Tuto base NodeJS
+
+Dans ce projet nous allons créé un deuxieme layout ( admin ) en + de celui par default
+
+Pour ce faire j'ai bien évidement tout ce qui était en relation avec la base de donnée (plus accessible au débutant)
+
+Donc pour commencer nous devons configurer le module de templating (handlebars) dans notre ./server.js
+
+```
+// Handlebars
+app.set('view engine', 'hbs');
+app.engine('hbs', hbs({
+    extname: 'hbs',
+    defaultLayout: 'main',
+    // Ici nous définissons notre nouveau layout
+    // Que nous avons créé dans ./views/layouts/adminLayout 
+    adminLayout: 'adminLayout'
+}));
+```
+
+ensuite nous devons aller créé ce fichier  ./views/layouts/adminLayout 
+(à vous d'aller voir les partials appeler dans ce layout qui ce trouve dans ./views/partials/adminLayout)
+
+```
+{{> adminLayout/head }}
+
+{{> adminLayout/navbar }}
+
+{{{ body }}}
+
+{{> adminLayout/end }}
+
+```
+
+ensuite nous devons créé une route pour redirigé sur notre page Admin
+nous allons la créé dans ./api/router.js
+
+```
+const adminController = require('./controllers/adminController')
+...
+
+// Admin
+// 2nd Layout 
+router.route('/admin')
+    .get(adminController.get)
+```
+
+Et maintenant nous devons spécifié a notre controller de désservir notre page admin dans notre adminLayout
+```
+module.exports = {
+    get: (req, res) => {
+        res.render('admin', {
+            // Quand nous utilisons un layout qui n'est pas celui par default nous devons le spécifié
+            layout: 'adminLayout'
+        })
+    }
+}
+```
+
+Et voila vous avez maintenant un deuxieme layout admin configuré proprement avec handlebars
 
 !!! attention au branch !!!
 
