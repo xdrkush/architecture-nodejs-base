@@ -17,7 +17,7 @@ Plusieurs branch à votre disposition:
  - image (gèrer les images (en cours))
  - init (branch d'orgine)
  - jwt (gerer les jwt, json web token (en cours))
- - light (branch la plus light)
+ - light (branch la plus light (OK))
  - mocha (gerer les test unitaire avec mocha, ... (en cours))
  - multer-array (gérer un tableau d'image avec une DB (en cours))
  - nodemailer (gérer les mail (en cours))
@@ -34,6 +34,9 @@ Plusieurs branch à votre disposition:
   - MongoDB Local ou Cloud (db: apiRest)
   - Nodemon
   - (sass optionel)
+
+# Installer Node JS
+https://github.com/nodesource/distributions/blob/master/README.md
 
 Pour pouvoir gérer facilement vos versions de npm grâce à NVM:
   - https://github.com/nvm-sh/nvm
