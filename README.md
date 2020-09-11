@@ -2,15 +2,12 @@
 1
 ## Tuto base NodeJS
 
-Dans ce projet vous allez trouvez pas mal de petite source pour commencer sur Node JS avec NPM
-L'objectif est bien de partir de l'architecture-node-js branch master pour lui greffé de multiple Module
-
-Et de biensur vous en proposer des tutos simples d'utilisation
+Dans ce projet vous pouvez tester une arch nodejs light sans base de donnée
 
 # Pré-requis
 
-NodeJS v10
-Nodemon
+  - NodeJS v10
+  - Nodemon
 
 # Installer Node JS
 https://github.com/nodesource/distributions/blob/master/README.md
