@@ -2,6 +2,8 @@
  * App.js
  ******************************/
 
+// Import de module
+// à vous d'allez jettez un oeil sur la doc de chaque module sur: https://www.npmjs.com/
 const
     express = require('express'),
     cookieParser = require('cookie-parser'),
@@ -13,29 +15,26 @@ const
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
     port = process.env.PORT || 3000,
-    // swaggerUi = require('swagger-ui-express'),
-    // expressOasGenerator = require('express-oas-generator'),
-    // swaggerDocument = require('./api/config/swagger.json'),
     morgan = require('morgan');
 
 // Morgan
 app.use(morgan('dev'))
 
+// Cookie-Parser
 app.use(cookieParser())
-
-// OAS generator express ( doc api )
-// expressOasGenerator.init(app, {});
 
 // Method-Override
 app.use(methodOverride('_method'))
 
 // Mongoose
+// Ceci est un tuto sinon vous devez cacher cette information de la ligne juste en dessous
 const urlDb = 'mongodb://localhost:27017/apiRest'
-
 mongoose.connect(urlDb, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
+// save session avec MongoDB
+const mongoStore = MongoStore(expressSession)
 
 // Handlebars
 app.set('view engine', 'hbs');
@@ -43,8 +42,6 @@ app.engine('hbs', hbs({
     extname: 'hbs',
     defaultLayout: 'main'
 }));
-
-const mongoStore = MongoStore(expressSession)
 
 // Express-session
 app.use(expressSession({
@@ -57,23 +54,17 @@ app.use(expressSession({
     })
 }));
 
-app.use('*', (req, res, next) => {
-    console.log('Cookie')
-    next()
-})
-
-
-
-//app.use
+// Express Static (Permet de pointer un dossier static sur une URL)
+// Exemple: le chemin /assets nous donnera accès au dossier public
 app.use('/assets', express.static('public'));
+
+// Body Parser qui nous permet de parser des data d'une req a une autre
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-// Swagger
-// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
+// Router
 const ROUTER = require('./api/router')
 app.use('/', ROUTER)
 
@@ -81,6 +72,7 @@ app.use('/', ROUTER)
 //     res.render('err404')
 // })
 
+// Lancement de l'application
 app.listen(port, () => {
     console.log("le serveur tourne sur le prt: " + port);
 });

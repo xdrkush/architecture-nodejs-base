@@ -1,160 +1,19 @@
+{{!-- 
+    Page Home
+    /home
+--}}
+
 <h1>Home</h1>
 
-{{!-- Import de Jquery --}}
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+{{> home/monPremierPartial }}
 
-{{#if cook }}
-  <h4>cook: {{ cook.path }}</h4>
-{{/if}}
+{{!-- Partial --}}
 
-{{!-- Style gerer grace au jquery en bas --}}
-<style>
-  #{{ idAllCookie }} {
-    transition: all 3s;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-  }
-  .bienvenu {
-    color: blue;
-  }
-</style>
+{{> cookie/style }}
 
-{{!-- Background Cookie --}}
-{{#if allCookie }}
-<style>body { background-color: purple; }</style>
-{{else if CCookie }}
-<style>body { background-color: green; }</style>
-{{else if CPtiGato }}
-<style>body { background-color: yellow; }</style>
-{{else if CSession }}
-<style>body { background-color: gray; }</style>
-{{else }} {{/if }}
+{{> cookie/flash }}
 
-{{!-- 
-    1) Flash Clear Cookie
---}}
-{{#if clearCookie }}
-<h4 id='flashClearCookie'> {{ clearCookie }} </h4>
-<script>
-setTimeout(() => {
-  $('#flashClearCookie').hide()
-}, 2000)
-</script>
-{{/if}}
+{{> cookie/popup }}
 
-{{!-- 
-    2) Flash New Cookie
---}}
-{{#if newCookie }}
-<h4 id='flashNewCookie'> {{ newCookie }} </h4>
-<script>
-setTimeout(() => {
-  $('#flashNewCookie').hide()
-}, 2000)
-</script>
-{{/if}}
-
-{{!-- 
-    3) Flash New ptiGato
---}}
-{{#if newPtiGato }}
-<h4 id='flashNewPtiGato'> {{ newPtiGato }} </h4>
-<script>
-setTimeout(() => {
-  $('#flashNewPtiGato').hide()
-}, 2000)
-</script>
-{{/if}}
-
-{{!-- 
-    4) Flash Kill Cookie || ptiGAto
---}}
-{{#if clearCookiePtiGato }}
-<h4 id='flashClearPtiGato'> {{ clearCookiePtiGato }} </h4>
-<script>
-setTimeout(() => {
-  $('#flashClearPtiGato').hide()
-}, 2000)
-</script>
-{{/if}}
-
-{{#if clearCookieCookie }}
-<h4 id='flashClearCookieCookie'> {{ clearCookieCookie }} </h4>
-<script>
-setTimeout(() => {
-  $('#flashClearCookieCookie').hide()
-}, 2000)
-</script>
-{{/if}}
-
-
-<div class='{{idAllCookie}} text-center'></div>
-
-{{!-- 
-    1) Clear Tout les Cookie
---}}
-<a href="/clearCookie">
-  <button>Supprimer tous les cookies</button>
-</a>
-
-{{!-- 
-    2) New Cookie
---}}
-<a href="/newCookie">
-  <button>New Cookie</button>
-</a>
-
-{{!-- 
-    3) New ptiGato
---}}
-<a href="/newPtiGato">
-  <button>New ptiGato</button>
-</a>
-
-
-{{!-- 
-    Kill cookie:
-      - Cookie
-      - ptiGAto
- --}}
-<form action="/cookie" method="post">
-  <button type='submit' name='clearCookie' value="killCookie">Clear Cookie</button>
-  <button type='submit' name='clearPtiGato' value="killPtiGato">Clear ptiGato</button>
-</form>
-
-
-{{!-- 
-    Appelle des json (render)
- --}}
-<h3> {{ allCookie }} </h3> </br>
-<h4> {{ CSession }} {{ CPtiGato }} {{ CCookie }} </h4>
-
-{{!-- ID à injecter --}}
-<div id="{{ idAllCookie }}"></div>
-
-{{!-- 
-    Injection du code après un delai
-    Et suppression après un delai
- --}}
-
-{{#if idAllCookie }}
-<script>
-  setTimeout(() => { // J'attend 1.5s pour faire apparaitre ma div
-    $('#{{ idAllCookie }}').ready(() => {
-      console.log('csddsc')
-      $("#{{ idAllCookie }}").html(`
-        <div class='bienvenu'>
-          <h2 class='text'> Bienvenu </h2>
-        </div>
-      `)
-      setTimeout(() => { // J'attent 5.5s pour supprimer les enfants de la div#idAllCookie
-        $("#{{ idAllCookie }}").empty();
-      }, 5500)
-    })
-  }, 1500)
-</script>
-{{/if}}
-
-
+{{> cookie/btn }}
 

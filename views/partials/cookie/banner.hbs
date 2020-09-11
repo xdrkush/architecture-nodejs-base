@@ -1,0 +1,22 @@
+{{!-- 
+    Banner pour le cookie ptiGato
+    import layout main.hbs
+    :banner
+--}}
+
+{{!-- Si il ya le cookie --}}
+{{#if CPtiGato }}
+{{!-- Sinon si il n'y a pas le cookie --}}
+{{else}}
+<div style='width: 100%; background: lime; height: auto; text-align: center'>
+   <div class="itm">
+       <a href="/newPtiGato">Créé mon cookie</a>
+       <p>Vous devez accepter le cookie PtiGato pour pouvoir vous créé et/ou supprimer un article</p>
+   </div>
+</div>
+{{/if}}
+
+{{!-- Si il y a le cookie "cookie" controller home --}}
+{{#if cook }}
+  <h4>cook: {{ cook.path }}</h4>
+{{/if}}
