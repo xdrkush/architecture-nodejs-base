@@ -10,7 +10,7 @@ Et de biensur vous en proposer des tutos simples d'utilisation.
 Plusieurs branch à votre disposition:
  - master (branch cloner pour réaliser un module (OK))
  - Recup-DB-Atlas (sortir un json de la db complete (en cours))
- - accept-cookie (voir comment intéragir avec les cookies (en cours))
+ - accept-cookie (voir comment intéragir avec les cookies (OK))
  - backup (comment réaliser un backup (en cours))
  - bootstrap (bootstrap est intégrer de façon a pouvoir ajouter des modules (OK))
  - cron (réaliser une tache cron,répétitive (en cours))
