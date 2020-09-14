@@ -35,21 +35,29 @@ router.route('/article/:id')
 router.route('/contact')
     .get(contactController.get)
 
-// Cookie
+// ========= Cookie //
+
+// Delete cookie PtiGato & Cookie
 router.route('/cookie')
     .post(cookieController.cookie)
+
+// Clear all cookie
 router.route('/clearCookie')
     .get(cookieController.clearCookie)
+
+// Create New Cookie
 router.route('/newCookie')
     .get(cookieController.newCookie)
+
+// Create New PtiGato
 router.route('/newPtiGato')
     .get(cookieController.newPtiGato)
-
+    
+// =========/Cookie //
 
 /***********
  * / Router
  */
 
- 
 // on export router pour le récupérer dans ../server.js
 module.exports = router;

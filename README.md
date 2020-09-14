@@ -2,7 +2,7 @@
 
 ## Tuto base NodeJS
 
-Dans ce projet
+Dans ce projet nous allons aborder la creation, l'utilisation et la suppresion des cookies, via des exercice sur la detection des cookies en front-end et en back-end, ce qui nous permettra de jouer sur le style, ou le déclenchement d'évenement.
 
 # Pré-requis
   - NodeJS v10.0.0
