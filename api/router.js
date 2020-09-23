@@ -10,7 +10,8 @@ const express = require('express'),
  *************/ 
 const homeController = require('./controllers/homeController'),
     articleController = require('./controllers/articleController'),
-    contactController = require('./controllers/contactController')
+    contactController = require('./controllers/contactController'),
+    commentController = require('./controllers/commentController')
 
 /*
  * Router
@@ -28,7 +29,13 @@ router.route('/article')
 
 // Article ID
 router.route('/article/:id')
+    .get(articleController.getID)
     .delete(articleController.deleteOne)
+
+// Comment ID
+router.route('/comment/:id')
+    .post(commentController.post)
+    .delete(commentController.deleteOne)
 
 // Contact
 router.route('/contact')

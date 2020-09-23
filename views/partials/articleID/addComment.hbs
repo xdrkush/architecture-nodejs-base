@@ -1,0 +1,23 @@
+{{!-- 
+    Partial ajouter un commentaire
+    :addComment
+--}}
+
+<h2><u>Ajouter un commentaire</u></h2>
+
+{{!-- Ici c'est le formulaire de création d'un commentaire qui redirige vers le chemin /comment --}}
+<form action="/comment/{{ artID._id }}" method="post">
+
+    {{!-- Le input de Author --}}
+    <label>Autheur</label>
+    <input type="text" name="author" placeholder="Autheur">
+
+    {{!-- Ici nous stockons l'ID de l'article référent du commentaire --}}
+    <label>Message</label>
+    {{!-- Le input de Message --}}
+    <textarea name="message"></textarea>
+
+    {{!-- Le Boutton d'envoi du formulaire --}}
+    <button type="submit">Confirmer</button>
+
+</form>

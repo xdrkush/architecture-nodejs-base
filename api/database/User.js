@@ -5,33 +5,33 @@
 
 // Import de Mongoose
 const mongoose = require('mongoose')
-const Schema   = mongoose.Schema
+const Schema = mongoose.Schema
 
 // Import model
-const Comment = require('./Comment')
-const User    = require('./User')
+const Article  = require('./Article')
+const User     = require('./Comment')
 
 // Création de notre Shéma (Article)
-const ArticleSchema = new mongoose.Schema({
-    title: {
-        type: String
+const UserSchema = Schema({
+    name: {
+        type: String,
+        unique: true
     },
-    content: {
-        type: String
+    created: {
+        type: Date,
+        default: Date.now()
     },
+    article: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Article'
+    }],
     comment: [{
         type: Schema.Types.ObjectId,
         ref: 'Comment'
-    }],
-    author: {
-        type: String
-    },
-    authorID: [{
-        type: Schema.Types.ObjectId,
-        ref: 'User'
     }]
+
 })
 
 // Et l'on export notre model grace à la passerelle Mongoose
 // Ce qui nous permettra de pouvoir l'utiliser sur d'autre page
-module.exports = mongoose.model('Article', ArticleSchema)
+module.exports = mongoose.model('User', UserSchema)

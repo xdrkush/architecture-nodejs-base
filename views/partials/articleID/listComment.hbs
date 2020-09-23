@@ -1,0 +1,28 @@
+{{!-- 
+    Partial liste de commentaire
+    :listComment
+--}}
+
+<div class="itm">
+
+    <h2><u>Liste des commentaire</u></h2>
+
+    {{!-- Ici nous listons les commentaires en référence avec l'ID de notre Article --}}
+    {{#each comment }}
+
+    <div class="itm">
+        {{!-- Ici nous récupérons les informations de notre commentaire --}}
+        <h3>par: {{ author }}</h3>
+        <p>{{ message }}</p>
+        <p>{{ articleID }}</p>
+
+        {{!-- Ici le boutton de suppression du commentaire --}}
+        <form action="/comment/{{ this.id }}/?_method=DELETE" method="post">
+            <button type="submit">Effacer</button>
+        </form>
+
+    </div>
+
+    {{/each }}
+
+</div>

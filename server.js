@@ -27,7 +27,8 @@ app.use(methodOverride('_method'))
 const urlDb = 'mongodb://localhost:27017/apiRest'
 mongoose.connect(urlDb, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true
 })
 // save session avec MongoDB
 const mongoStore = MongoStore(expressSession)
