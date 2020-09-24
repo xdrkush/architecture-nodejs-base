@@ -10,6 +10,7 @@ Et de biensur vous en proposer des tutos simples d'utilisation.
 Plusieurs branch à votre disposition:
  - master (branch cloner pour réaliser un module (OK))
  - Recup-DB-Atlas (sortir un json de la db complete (en cours))
+ - algolia (config et recherche faites grace à algolia (en cours))
  - accept-cookie (voir comment intéragir avec les cookies (OK))
  - backup (comment réaliser un backup (en cours))
  - bootstrap (bootstrap est intégrer de façon a pouvoir ajouter des modules (OK))
@@ -23,7 +24,7 @@ Plusieurs branch à votre disposition:
  - nodemailer (gérer les mail (en cours))
  - page ID (réaliser un page ID liaison avec un article défini et c'est commentaire (OK))
  - passport-google (inscription google API (en cours))
- - populate (Fonction MongoDB de relation entre Model (en cours))
+ - populate (Fonction MongoDB de relation entre Model (OK manque le readme a editer))
  - reqFlash (gerer req.flash, plusieurs manières proposer (OK))
  - secondLayout (gerer un deuxieme layout avec Handlebars(OK))
  - validator (gerer validator.js, base (en cours))
