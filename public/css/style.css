@@ -10,4 +10,9 @@ a {
   padding: 10px;
 }
 
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
 /*# sourceMappingURL=style.css.map */

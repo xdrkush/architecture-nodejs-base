@@ -8,8 +8,8 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 // Import model
-const Article  = require('./Article')
-const User     = require('./Comment')
+const Article = require('./Article')
+const User = require('./Comment')
 
 // Création de notre Shéma (Article)
 const UserSchema = Schema({
@@ -21,10 +21,14 @@ const UserSchema = Schema({
         type: Date,
         default: Date.now()
     },
+    // Ici nous creeons une relation avec le model Comment
+    // C'est un tableau qui acceuillera les id des Article (String)
     article: [{
         type: Schema.Types.ObjectId,
         ref: 'Article'
     }],
+    // Ici nous creeons une relation avec le model Comment
+    // C'est un tableau qui acceuillera les id des Comment (String)
     comment: [{
         type: Schema.Types.ObjectId,
         ref: 'Comment'

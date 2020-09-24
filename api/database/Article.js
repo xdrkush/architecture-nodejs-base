@@ -19,6 +19,8 @@ const ArticleSchema = new mongoose.Schema({
     content: {
         type: String
     },
+    // Ici nous creeons une relation avec le model Comment
+    // C'est un tableau qui acceuillera les id des comment (String)
     comment: [{
         type: Schema.Types.ObjectId,
         ref: 'Comment'
@@ -26,10 +28,12 @@ const ArticleSchema = new mongoose.Schema({
     author: {
         type: String
     },
-    authorID: [{
+    // Ici nous creeons une relation avec le model User
+    // C'est un tableau qui acceuillera les id des User (String)
+    authorID: {
         type: Schema.Types.ObjectId,
         ref: 'User'
-    }]
+    }
 })
 
 // Et l'on export notre model grace à la passerelle Mongoose

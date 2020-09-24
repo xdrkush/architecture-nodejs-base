@@ -24,54 +24,89 @@ module.exports = {
         // Ici query est égale à l'id envoyer via l'URL /article/:id
         const query = req.params.id,
             // Ici on recherche l'article ayant comme id le query de notre URL   
-            dbArticleID = await Article.findById(query),
-            // Ici on recherche les commentaire ayant comme article référant l'id de notre query    
-            dbCommentID = await Comment.find({
-                articleID: query
-            })
+            dbArticleID = await Article.findById(query)
 
-        // Ici on renvoit la page articleID avec les data de articles et c'est commentaire
-        res.render('articleID', {
-            artID: dbArticleID,
-            comment: dbCommentID
-        })
+        // Ici nous resortons notre constructeur
+        Article
+            // Nous recherchons une article ayant le meme ID que notre req.params.id
+            .findById(query)
+            // Nous utilisons populate afin de ressortir les datas des models en relation avec notre constructeur principal
+            .populate('comment authorID')
+
+            // Nous executons nous recherche
+            .exec((err, result) => {
+                // Si il y une erreur on la log grace à handleError
+                if (err) return handleError(err);
+
+                // Petit check
+                console.log('Populate Exec')
+                console.log(result)
+
+                // Et on renvoie notre page avec les data
+                res.render('articleID', {
+                    artID: dbArticleID,
+                    comment: result.comment,
+                    authorID: result.authorID
+                })
+            })
     },
+    // Method post
     post: async (req, res) => {
+        /*
+         * Ici c'est un peu spécifique a cause du tuto car en prod nous aurions deja une session avec utilisateur UNIQUE
+         * J'ai garder l'utilisateur unique (name) mais en cas qu'il n'y es aucun utilisateur, un utilisateur sera créé avec votre name
+         * Je récupère le name (author) du formulaire de création d'article pour créé l'utilisateur
+         * et l'utilisateur (name) est deja utilisé vous pouvez le garder sans conflit
+         * mais si vous créé des articles avec des author (user.name) différent vous allez créé de  nouveau utilisateur
+         */
+        // Ici on récupère le req.body.author pour le confronter en cas de deja existant
         const user = await User.findOne({ name: req.body.author })
         console.log(user)
 
+        // Si il existe deja alors il l'utilise
         if (user) {
             console.log('User exist')
+            // On définit la construction de notre article
             const article = new Article({
                 title: req.body.title,
                 author: req.body.author,
                 authorID: user._id
             })
 
+            // On va pusher l'id de l'article creer dans notre tableau user afin de garder un historique
             user.article.push(article._id)
 
+            // Et on sauvegarde nos modifications
             article.save((err) => { if (err) return handleError(err) })
             user.save((err) => { if (err) return handleError(err) })
 
+            // Et on redirige
             res.redirect('/article')
 
+        // Si le User n'existe pas il va en créer un
         } else {
             console.log('User Not exist')
             // Attention vous creez un user a chaque creation d'article
+            // On definit la construction de notre USER
             const author = new User({
                 name: req.body.author
             })
+
+            // On définit la construction de notre Article
             const article = new Article({
                 title: req.body.title,
                 author: req.body.author,
                 authorID: author._id
             })
 
+            // On vient pusher l'id de notre article dans le nouvelle utilisateur creer
             author.article.push(article._id)
 
+            // On sauvergarde nos modification
             article.save((err) => { if (err) return handleError(err) })
             author.save((err) => { if (err) return handleError(err) })
 
+            // Et on redirige
             res.redirect('/article')
         }
 
