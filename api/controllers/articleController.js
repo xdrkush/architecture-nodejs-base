@@ -37,25 +37,43 @@ module.exports = {
         })
     },
     post: async (req, res) => {
-        // Attention vous creez un user a chaque creation d'article
-        const author  = new User ({
-            name: req.body.author
-        })
-        const article = new Article ({
-            title: req.body.title,
-            author: req.body.author,
-            authorID: author._id
-        })
+        const user = await User.findOne({ name: req.body.author })
+        console.log(user)
 
-        article.save((err) => {
-            if (err) return handleError(err)
-
-            author.article = [ article._id ]
-            author.save((err) => {
-                if (err) return handleError(err)
-                res.redirect('/article')
+        if (user) {
+            console.log('User exist')
+            const article = new Article({
+                title: req.body.title,
+                author: req.body.author,
+                authorID: user._id
             })
-        })
+
+            user.article.push(article._id)
+
+            article.save((err) => { if (err) return handleError(err) })
+            user.save((err) => { if (err) return handleError(err) })
+
+            res.redirect('/article')
+
+        } else {
+            console.log('User Not exist')
+            // Attention vous creez un user a chaque creation d'article
+            const author = new User({
+                name: req.body.author
+            })
+            const article = new Article({
+                title: req.body.title,
+                author: req.body.author,
+                authorID: author._id
+            })
+
+            author.article.push(article._id)
+
+            article.save((err) => { if (err) return handleError(err) })
+            author.save((err) => { if (err) return handleError(err) })
+
+            res.redirect('/article')
+        }
 
     },
     // Method Delete One
@@ -107,10 +125,10 @@ module.exports = {
                 // On supprime tout les Comment
                 Comment.deleteMany((err) => {
                     // Si il n'y a pas d'err alors on redirige sur la page article
-                    if (!err)  {
+                    if (!err) {
                         console.log('Tout les Commentaire sont supprimer');
                         return res.redirect('/article')
-                    // Sinon tu renvoie l'err
+                        // Sinon tu renvoie l'err
                     } else res.send(err)
                 })
             }

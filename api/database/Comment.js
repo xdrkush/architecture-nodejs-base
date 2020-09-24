@@ -23,7 +23,7 @@ const CommentSchema = new mongoose.Schema({
     content: {
         type: String
     },
-    article: {
+    articleID: {
         type: Schema.Types.ObjectId,
         ref: 'Article'
     },

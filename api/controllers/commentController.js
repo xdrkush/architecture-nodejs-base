@@ -8,28 +8,23 @@ module.exports = {
     post: async (req, res) => {
         const query   = { _id: req.params.id }
 
-        const author  = await User.find({ name: 'drk' })
+        const author  = await User.findOne({ name: 'drk' })
         const article = await Article.findById(query)
 
         const comment = new Comment({
             content: req.body.content,
             articleID: article._id,
+            // Pour l'auteur il serais préférable d'utilisé une session
             author: req.body.author,
             authorID: author._id
         })
 
-        article.comment = [ comment._id ]
-        author.comment = [ comment._id ]
-    
-        console.log(author)
-        console.log('author')
-        console.log(article)
-        console.log('article')
-        
+        article.comment.push(comment._id)
+        author.comment.push(comment._id)
+
         comment.save((err) => { if (err) return handleError(err) })
         article.save((err) => { if (err) return handleError(err) })
         author.save((err) => { if (err) return handleError(err) })
-
 
         // Et on redirige sur notre article parent
         res.redirect(`/article/${article._id}`)
