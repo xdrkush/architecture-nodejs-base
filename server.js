@@ -16,6 +16,8 @@ const
     port = process.env.PORT || 3000,
     morgan = require('morgan');
 
+require('dotenv').config()
+
 // Morgan
 app.use(morgan('dev'))
 
@@ -24,12 +26,15 @@ app.use(methodOverride('_method'))
 
 // Mongoose
 // Ceci est un tuto sinon vous devez cacher cette information de la ligne juste en dessous
-const urlDb = 'mongodb://localhost:27017/apiRest'
-mongoose.connect(urlDb, {
+mongoose
+  .connect( process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
-})
+  })
+  .then(() => console.log('Connecter a MongoDB'))
+  .catch(err => console.log(err))
+
 // save session avec MongoDB
 const mongoStore = MongoStore(expressSession)
 

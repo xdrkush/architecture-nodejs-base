@@ -1,0 +1,25 @@
+<h4><u>Search</u> (Algolia)</h4>
+
+{{!-- Formulaire --}}
+<form action="/search" method="post" class="col">
+    <label for="algolia">Rechercher:</label>
+    <input type="text" name="algolia" style='width: 200px'>
+    <button type="submit" style="width: 100px"> validez </button>
+</form>
+{{!-- /Formulaire --}}
+
+{{!-- List de résultat --}}
+<div class="col">
+    <h3>Liste des résultat</h3>
+    <p>Nombre de résultat: {{count}} </p>
+    <ul class="flx">
+        {{!-- <li>title</li> --}}
+        {{#each result }}
+            <li style='border-bottom: solid 2px lime; padding: 10px; margin: 10px'>
+                <h4> {{ title }} </h4>
+                <p>de: {{ author }} </p>
+            </li>
+        {{/each }}
+    </ul>
+</div>
+{{!-- /List de résultat --}}

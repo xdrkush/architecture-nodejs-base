@@ -1,17 +1,18 @@
 /*
  * Import Module
- ****************/ 
+ ****************/
 const express = require('express'),
     router = express.Router(),
     path = require('path')
 
 /*
  * Controller
- *************/ 
-const homeController = require('./controllers/homeController'),
+ *************/
+const  homeController = require('./controllers/homeController'),
     articleController = require('./controllers/articleController'),
     contactController = require('./controllers/contactController'),
-    commentController = require('./controllers/commentController')
+    commentController = require('./controllers/commentController'),
+    algoliaController = require('./controllers/algoliaController')
 
 /*
  * Router
@@ -41,10 +42,15 @@ router.route('/comment/:id')
 router.route('/contact')
     .get(contactController.get)
 
+// Algolia
+router.route('/search')
+    .get(algoliaController.get)
+    .post(algoliaController.search)
+
 /***********
  * / Router
  */
 
- 
+
 // on export router pour le récupérer dans ../server.js
 module.exports = router;

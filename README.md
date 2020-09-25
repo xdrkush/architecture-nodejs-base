@@ -2,15 +2,19 @@
 
 ## Tuto base NodeJS
 
-Dans ce projet nous allons aborder Populate() qui est une fonctionalité pour créé des relations entre collection
+Dans ce projet nous allons aborder algolia afin de faire une recherche et récupéré le résultat
 
-Nous allons aborder ce sujet sur la base de la branch PageID qui elle meme est cloner de la branch master
-master > pageID > populate
+!!! Attention !!!
+pour l'exercice je vous es laisser le .env mais il est évident que si vous utiliser vos clef de ne pas les pusher sur github ;)
+
+Nous allons aborder ce sujet sur la base de la branch Populate qui est cloner de pageID qui est cloner de la master
+master > pageID > populate > algolia
 
 # Pré-requis
   - NodeJS v10.0.0
   - MongoDB Local ou Cloud (db: apiRest)
   - Nodemon
+  - Algolia (https://www.npmjs.com/package/algoliasearch)
   - (sass optionel)
 
 # Installer Node JS
