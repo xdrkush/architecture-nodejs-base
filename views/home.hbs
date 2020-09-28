@@ -1,9 +1,44 @@
 <h1>Home</h1>
 
-{{message}}
+{{ message }}
+
+<div id="token"></div>
+
+{{#if token }}
+
+<h4>Reponse du serveur node</h4>
+
+<h6>token: {{ token }}</h6>
+<p>Le token à été ajouté dans votre localStorage ('jwt_token')</p>
+
+<script>
+  const token = "{{ token }}"
+  localStorage.setItem('jwt_token', token)
+</script>
+
+{{else }}
 
 <form action="/" method="post">
+  <label for="">Pseudo:</label>
   <input type="text" name="pseudo">
+  <label for="">Email:</label>
   <input type="text" name="email">
   <input type="submit" value="autenticate">
 </form>
+
+{{/if }}
+
+<form action="/jwt" method="post">
+  <label for="">Se formulaire sert à tester votre token avec le back-end</label>
+  <input id='tokenstorage' class="token" type="text" name="token" value='ezdzd'>
+  <input type="submit" value="Checker">
+</form>
+
+<script>
+  const tokenStorage = localStorage.getItem('jwt_token')
+  if (tokenStorage) {
+    document.getElementById('token').innerText = 'token: ' + tokenStorage;
+    document.getElementById('tokenstorage').value = tokenStorage;
+  }
+  else document.getElementById('token').innerText = "token: Vous n'avez pas token dans votre localStorage";
+</script>

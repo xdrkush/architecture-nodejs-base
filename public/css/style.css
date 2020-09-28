@@ -1,11 +1,13 @@
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .flx {
-    display: flex;
+  display: flex;
 }
 
 .itm {
-    padding: 10px;
+  padding: 10px;
 }
+
+/*# sourceMappingURL=style.css.map */

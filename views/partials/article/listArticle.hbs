@@ -1,0 +1,15 @@
+{{!-- 
+    Partial list Article
+    :listArticle
+--}}
+
+<div class="flx">
+    {{#each dbArticle }}
+    <div class="itm">
+        <h3>Titre: {{ title }}</h3>
+        <form action="/article/{{ this.id }}/?_method=DELETE" method="post">
+            <button type="submit">Effacer</button>
+        </form>
+    </div>
+    {{/each }}
+</div>

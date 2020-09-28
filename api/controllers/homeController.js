@@ -1,37 +1,33 @@
-const jwt = require('jsonwebtoken'),
-      fs  = require('fs')
+const jwt = require('jsonwebtoken');
 
 module.exports = {
+    // Method Get
     get: (req, res) => {
         res.render('home')
     },
     post: (req, res) => {
-        console.log('Post Home (test JWT)')
-        const privateKey = fs.readFileSync('api/config/private.pem')
 
-        console.log(privateKey)
-
-        // const payload = {
-        //     pseudo: req.body.pseudo,
-        //     email: req.body.email
-        // }
-        // console.log('payload')
-        // console.log(payload)
-
-        // let token = jwt.sign(payload, privateKey, {
-        //     algorithm: 'RS256',
-        //     expiresIn: 1440
-        // })
-        // console.log('token crypt')
-        // console.log(token)
-
-        // const decoded = jwt.verify(token, privateKey)
-        // console.log('token Decod')
-        // console.log(decoded)
+        const token = jwt.sign({
+            pseudo: req.body.pseudo,
+            email: req.body.email
+        }, process.env.JWT_KEY_PRIVATE, {
+            expiresIn: '1h'
+        })
 
         res.render('home', {
-            // decoded: decoded,
-            message: 'ferfefezfzef'
+            token: token,
+            message: 'Mon super Message'
         })
+    },
+    jwt: (req, res) => {
+        const tokenHash = req.body.token
+
+        if (tokenHash) {
+            const token = jwt.verify(req.body.token, process.env.JWT_KEY_PRIVATE)
+
+            res.render('home', {
+                message: 'Vous pouvez modifier les data'
+            })
+        }
     }
 }
