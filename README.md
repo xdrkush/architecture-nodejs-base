@@ -17,7 +17,7 @@ Plusieurs branch à votre disposition:
  - cron (réaliser une tache cron,répétitive (en cours))
  - image (gèrer les images (en cours))
  - init (branch d'orgine)
- - jwt (gerer les jwt, json web token (en cours))
+ - jwt (base JWT) (OK, manque le readme))
  - light (branch la plus light (OK))
  - mocha (gerer les test unitaire avec mocha, ... (en cours))
  - multer-array (gérer un tableau d'image avec une DB (en cours))
