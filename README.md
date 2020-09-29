@@ -15,6 +15,7 @@ Plusieurs branch à votre disposition:
  - backup (comment réaliser un backup (en cours))
  - bootstrap (bootstrap est intégrer de façon a pouvoir ajouter des modules (OK))
  - cron (réaliser une tache cron,répétitive (en cours))
+ - dark-mode (base pour réaliser un dark-mode (OK)) 
  - image (gèrer les images (en cours))
  - init (branch d'orgine)
  - jwt (base JWT) (OK, manque le readme))
