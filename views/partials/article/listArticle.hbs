@@ -7,6 +7,7 @@
     {{#each dbArticle }}
     <div class="itm">
         <h3>Titre: {{ title }}</h3>
+        <p> {{ created }} </p>
         <form action="/article/{{ this.id }}/?_method=DELETE" method="post">
             <button type="submit">Effacer</button>
         </form>

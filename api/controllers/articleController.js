@@ -2,6 +2,7 @@
  * Import Module
  ****************/
 const Article = require('../database/Article')
+const format = require('date-format')
 
 /*
  * Controller
@@ -25,6 +26,7 @@ module.exports = {
         const dbArticle = await Article.find({})
         // On demande au model Article de créé un Article
         Article.create({
+            created: format.asString('le dd/MM/yyyy à hh:mm:ss', new Date()),
             // Il nous créé un Article avec le model du formulaire envoyer (req.body)
             ...req.body
         })

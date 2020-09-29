@@ -1,10 +1,14 @@
-
 /*
  * Controller
  *************/ 
+var format = require('date-format')
+
 module.exports = {
     // Method Get
     get: (req, res) => {
-        res.render('home')
+        const date = format.asString('hh:mm:ss.yyyy', new Date());
+        res.render('home', {
+            date: date
+        })
     }
 }

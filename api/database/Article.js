@@ -5,6 +5,7 @@
 
 // Import de Mongoose
 const mongoose = require('mongoose')
+const format = require('date-format')
 
 // Création de notre Shéma (Model)
 // c'est le Model de (Model)
@@ -21,6 +22,9 @@ const ArticleSchema = new mongoose.Schema({
     isVerified: {
         type: Boolean,
         default: false
+    },
+    created: {
+        type: String
     },
     articleID: Number
 })
