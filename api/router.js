@@ -21,6 +21,7 @@ router.route('/')
     .get(homeController.get)
     .post(homeController.post)
 
+// Cette route est créé afin de checker la valeur du token
 router.route('/jwt')
     .post(homeController.jwt)
 

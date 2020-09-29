@@ -1,16 +1,23 @@
 <h1>Home</h1>
 
+{{!-- Ici le message renvoyer par la réponse du post / --}}
 {{ message }}
 
+{{!-- Ici on utilise cette div#token pour y insérer le contenu de notre token --}}
 <div id="token"></div>
+{{!-- Ici le boutton va nous servir à supprimer notre token dans le localStorage --}}
+<button onclick="clearStorage()">Clear Storage</button>
 
+{{!-- Petite conditions que nous pouvons observer lors de la réponse du post / --}}
+{{!-- token est égale à la variable renvoyer depuis le controller post / --}}
 {{#if token }}
 
 <h4>Reponse du serveur node</h4>
 
-<h6>token: {{ token }}</h6>
+<h5>token: <p>{{ token }}</p></h5>
 <p>Le token à été ajouté dans votre localStorage ('jwt_token')</p>
 
+{{!-- Petit script afin d'insérer le contenu de notre token dans le localStorage --}}
 <script>
   const token = "{{ token }}"
   localStorage.setItem('jwt_token', token)
@@ -18,6 +25,7 @@
 
 {{else }}
 
+{{!-- Si nous avons pas token alors ce formulaire de simulation d'user est visible --}}
 <form action="/" method="post">
   <label for="">Pseudo:</label>
   <input type="text" name="pseudo">
@@ -28,17 +36,30 @@
 
 {{/if }}
 
+{{!-- Ici le formulaire pour tester notre token avec le back-end (la ou il sera déchiffrer) --}}
 <form action="/jwt" method="post">
   <label for="">Se formulaire sert à tester votre token avec le back-end</label>
-  <input id='tokenstorage' class="token" type="text" name="token" value='ezdzd'>
+  <input id='tokenstorage' class="token" type="text" name="token">
   <input type="submit" value="Checker">
 </form>
 
+{{!-- Ce script js client nou permet de jouer avec le token en front --}}
 <script>
+  // on déclare tokenStorage qui est la récupération du token jwt_token dans le localStorage
   const tokenStorage = localStorage.getItem('jwt_token')
+  // petite condition au cas ou nous aurions aucun token à traiter
   if (tokenStorage) {
+    // on inject la valeur du token dans notre div#token
     document.getElementById('token').innerText = 'token: ' + tokenStorage;
+    // on inject la valeur du token dans notre input#tokenstorage
     document.getElementById('tokenstorage').value = tokenStorage;
   }
-  else document.getElementById('token').innerText = "token: Vous n'avez pas token dans votre localStorage";
+  // sinon on inject dans div#token qu'il n'y aucun token
+  else document.getElementById('token').innerText = "token: Vous n'avez pas token dans votre localStorage"
+
+  // cette function nous permet de supprimer notre item dans le localStorage
+  function clearStorage() {
+    localStorage.removeItem('jwt_token')
+    document.getElementById('token').innerText = "token: Vous n'avez pas token dans votre localStorage"
+  };
 </script>
