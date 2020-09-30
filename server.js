@@ -16,6 +16,10 @@ const
     port = process.env.PORT || 3000,
     morgan = require('morgan');
 
+const Handlebars = require("handlebars");
+const MomentHandler = require("handlebars.moment");
+MomentHandler.registerHelpers(Handlebars);
+
 // Morgan
 app.use(morgan('dev'))
 

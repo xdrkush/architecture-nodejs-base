@@ -4,7 +4,12 @@
 --}}
 
 <h1>Home</h1>
-
 {{> home/monPremierPartial }}
 
-{{ date }}
+{{!-- Je trouve ce module plus utile en back-end --}}
+<p>Date réaliser avec <u>date-format</u> (back) </p>
+<p>{{ date }}</p>
+
+{{!-- Je trouve ce module plus utile en front-end --}}
+<p>Date réaliser avec <u>moment</u> (handlebars, front)</p>
+<p>le {{moment d " DD/MM/YYYY " }} à {{moment d " hh:mm.ss "}}</p>

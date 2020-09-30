@@ -26,6 +26,9 @@ const ArticleSchema = new mongoose.Schema({
     created: {
         type: String
     },
+    dateISO: {
+        type: Date
+    },
     articleID: Number
 })
 

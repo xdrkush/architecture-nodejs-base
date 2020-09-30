@@ -2,7 +2,9 @@
 
 ## Tuto base NodeJS
 
-Dans ce projet nous allons découvrir les
+Dans ce projet nous allons découvrir comment geré nos date avec un DB ou seulement d'affichage
+  - moment (handlebars)
+  - date-format
 
 # Pré-requis
   - NodeJS v10.0.0
