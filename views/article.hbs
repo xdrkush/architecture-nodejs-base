@@ -1,28 +1,29 @@
+{{!-- 
+    Page Article
+    /article
+--}}
+
 <h1>Article</h1>
 
-<div>
-    <h2><u>Liste Article:</u></h2>
-    <div class="flx">
-        {{#each dbArticle }}
-        <div class="itm">
-            <h3>Titre: {{ title }}</h3>
-            <form action="/article/{{ this.id }}/?_method=DELETE" method="post">
-            <button type="submit">Effacer</button>
-        </form>
-        </div>
-        {{/each }}
-    </div>
-    <div class="itm">
-        <h5>Tous supprimer ?</h5>
-        <form action="/article/?_method=DELETE" method="post">
-            <button type="submit">Effacer</button>
-        </form>
-    </div>
-</div>
+<h2><u>Liste Article:</u></h2>
 
-<div>
-    <form action="/article" method="post">
-        <input type="text" name="title" placeholder="Title">
-        <button type="submit">Confirmer</button>
-    </form>
-</div>
+{{!-- 
+    Dans le block en dessous ce trouve la boucle des articles
+    retrouver le dans ./partial/article
+--}}
+{{> article/listArticle }}
+
+
+{{!-- 
+    Dans le block en dessous le boutton de suppression de tout les articles
+    retrouver le dans ./partial/article
+--}}
+{{> article/deleteAllArticle }}
+
+
+{{!-- 
+    Dans le block en dessous le boutton d'ajout d'article
+    retrouver le dans ./partial/article
+--}}
+{{> article/createArticle }}
+
