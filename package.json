@@ -1,12 +1,14 @@
 {
     "name": "architecture-nodejs-base",
     "version": "1.0.0",
-    "description": "erfe",
+    "description": "Tuto nodejs Basic",
     "main": "server.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "nodemon --exec 'mocha ./test/*.js'",
+        "tu": "nodemon --exec 'mocha ./test/*.js --timeout 10000 -R min'",
         "start": "nodemon server.js",
-        "reinstall": "sudo rm -r node_modules* && npm i && npm start"
+        "reinstall": "sudo rm -r node_modules* && npm i && npm start",
+        "sass": "sass --watch ./public/css/sass/style.sass:./public/css/style.css"
     },
     "repository": {
         "type": "git",
@@ -31,6 +33,7 @@
     },
     "devDependencies": {
         "handlebars": "^4.5.0",
+        "morgan": "^1.9.1",
         "nodemon": "^2.0.2"
     }
 }
