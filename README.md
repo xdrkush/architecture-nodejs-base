@@ -17,7 +17,7 @@ Plusieurs branch à votre disposition:
  - cron (réaliser une tache cron,répétitive (en cours))
  - dark-mode (base pour réaliser un dark-mode (OK))
  - date (formattage des dates (OK))
- - image (gèrer les images (en cours))
+ - image (gèrer les images (OK))
  - init (branch d'orgine)
  - jwt (base JWT) (OK, manque le readme))
  - light (branch la plus light (OK))
