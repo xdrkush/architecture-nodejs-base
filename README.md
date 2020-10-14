@@ -2,24 +2,40 @@
 
 ## Tuto base NodeJS
 
-# Pré-requis
+Dans ce projet vous allez réaliser un backup d'une base de données NoSQL (MongoDB)
 
-NodeJS v10
-MongoDB Local ou Cloud (db: apiRest) Nodemon
+MongoDB Officiel (
+  - https://docs.mongodb.com/manual/reference/program/mongodump/
+  - https://docs.mongodb.com/database-tools/mongorestore/
+)
+
+
+# Pré-requis
+  - NodeJS v10.0.0
+  - MongoDB Local ou Cloud (db: apiRest)
+  - Nodemon
+  - (sass optionel)
+
+# Installer Node JS
+https://github.com/nodesource/distributions/blob/master/README.md
+
+Pour pouvoir gérer facilement vos versions de npm grâce à NVM:
+  - https://github.com/nvm-sh/nvm
 
 # Installer Nodemon
 ```
 sudo npm i nodemon -g
 ```
 
-# Installer l'appli
-
+# Lancer Mongo DB (local)
 ```
 sudo mongod
 ```
 
-## Nouveau Terminal
+Vous pouvez creer votre DB Cloud sur MongoAtlas Gratuitement (vous serez obligez de creer un compte)
+  - https://www.mongodb.com/cloud/atlas
 
+# Installer le dossier
 ```
 git clone https://github.com/xdrkush/architecture-nodejs-base.git
 cd architecture-nodejs-base
@@ -27,4 +43,8 @@ npm i
 npm start
 ```
 
-## J'espère que sa pourra vous aidez.
+!!! attention au branch !!!
+
+désolé d'avance ^^
+
+# J'espère que ça pourra vous aidez.

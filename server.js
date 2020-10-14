@@ -25,17 +25,13 @@ app.use(methodOverride('_method'))
 // Mongoose
 // Ceci est un tuto sinon vous devez cacher cette information de la ligne juste en dessous
 const urlDb = 'mongodb://localhost:27017/apiRest'
-mongoose.connect( urlDb, {
+mongoose.connect(urlDb, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
 })
 // save session avec MongoDB
 const mongoStore = MongoStore(expressSession)
-
-// Back Up Auto
-const backupManual = require('./BackUp/Controllers/backupManual')
-const backupAuto = require('./BackUp/Controllers/backupAuto')
 
 // Handlebars
 app.set('view engine', 'hbs');
@@ -67,7 +63,7 @@ app.use(bodyParser.urlencoded({
 
 // Router
 const ROUTER = require('./api/router')
-app.use('/', ROUTER)
+app.use(ROUTER)
 
 
 // app.use((req, res) => {

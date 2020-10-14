@@ -16,6 +16,10 @@ contactController = require('./controllers/contactController')
  * Router
  ***********/
 
+/*
+ * Router
+ ***********/
+
 // Home
 router.route('/')
     .get(homeController.get)
@@ -29,16 +33,6 @@ router.route('/article')
 // Article ID
 router.route('/article/:id')
     .delete(articleController.deleteOne)
-
-// Article
-router.route('/user')
-    .get(userController.get)
-    .post(userController.post)
-    .delete(userController.deleteAll)
-
-// Article ID
-router.route('/user/:id')
-    .delete(userController.deleteOne)
 
 // Contact
 router.route('/contact')
