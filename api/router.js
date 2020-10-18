@@ -9,12 +9,7 @@ const express = require('express'),
  *************/ 
 const homeController = require('./controllers/homeController'),
 articleController = require('./controllers/articleController'),
-userController = require('./controllers/userController'),
 contactController = require('./controllers/contactController')
-
-/*
- * Router
- ***********/
 
 /*
  * Router

@@ -2,17 +2,11 @@
 
 ## Tuto base NodeJS
 
-Dans ce projet vous allez réaliser un backup d'une base de données NoSQL (MongoDB)
-
-MongoDB Officiel (
-  - https://docs.mongodb.com/manual/reference/program/mongodump/
-  - https://docs.mongodb.com/database-tools/mongorestore/
-)
-
+Ce projet est une copie de la branch master avec une db MYSQL
 
 # Pré-requis
   - NodeJS v10.0.0
-  - MongoDB Local ou Cloud (db: apiRest)
+  - MySql
   - Nodemon
   - (sass optionel)
 
@@ -27,13 +21,42 @@ Pour pouvoir gérer facilement vos versions de npm grâce à NVM:
 sudo npm i nodemon -g
 ```
 
-# Lancer Mongo DB (local)
+# Lancer MySql (local)
 ```
-sudo mongod
+sudo systemctl start mysql.service
 ```
 
-Vous pouvez creer votre DB Cloud sur MongoAtlas Gratuitement (vous serez obligez de creer un compte)
-  - https://www.mongodb.com/cloud/atlas
+Pour le script sql:
+  - dans un terminal: 
+
+```
+mysq -u user -p
+Enter Password:
+
+CREATE DATABASE IF NOT EXISTS `crud_tutorial` CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+USE crud_tutorial;
+
+CREATE TABLE  `customers` (
+`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`name` VARCHAR( 100 ) NOT NULL ,
+`email` VARCHAR( 100 ) NOT NULL ,
+`mobile` VARCHAR( 100 ) NOT NULL
+) ENGINE = INNODB;
+
+```
+
+## or
+
+```
+cd ./crud-php-mysql
+
+mysq -u user -p
+Enter Password:
+
+SOURCE scripts.sql;
+
+```
 
 # Installer le dossier
 ```

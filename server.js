@@ -9,8 +9,7 @@ const
     app = express(),
     hbs = require('express-handlebars'),
     expressSession = require('express-session'),
-    mongoose = require('mongoose'),
-    MongoStore = require('connect-mongo'),
+    mysql = require('mysql'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
     port = process.env.PORT || 3000,
@@ -22,16 +21,18 @@ app.use(morgan('dev'))
 // Method-Override
 app.use(methodOverride('_method'))
 
-// Mongoose
-// Ceci est un tuto sinon vous devez cacher cette information de la ligne juste en dessous
-const urlDb = 'mongodb://localhost:27017/apiRest'
-mongoose.connect(urlDb, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true
-})
-// save session avec MongoDB
-const mongoStore = MongoStore(expressSession)
+// Mysql
+db = mysql.createConnection({
+    host: 'localhost',
+    user: 'user',
+    password: 'password',
+    database: 'crud_tutorial'
+});
+
+db.connect((err) => {
+    if (err) console.error('error connecting: ' + err.stack);
+    console.log('connected as id ' + db.threadId);
+});
 
 // Handlebars
 app.set('view engine', 'hbs');
@@ -45,10 +46,7 @@ app.use(expressSession({
     secret: 'securite',
     name: 'ptiGato',
     saveUninitialized: true,
-    resave: false,
-    store: new mongoStore({
-        mongooseConnection: mongoose.connection
-    })
+    resave: false
 }));
 
 // Express Static (Permet de pointer un dossier static sur une URL)
