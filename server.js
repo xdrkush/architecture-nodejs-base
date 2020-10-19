@@ -12,7 +12,7 @@ const
     mysql = require('mysql'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
-    port = process.env.PORT || 3000,
+    port = process.env.PORT || 4000,
     morgan = require('morgan');
 
 // Morgan
@@ -24,8 +24,8 @@ app.use(methodOverride('_method'))
 // Mysql
 db = mysql.createConnection({
     host: 'localhost',
-    user: 'user',
-    password: 'password',
+    user: 'arinfo',
+    password: 'rfn2K20$',
     database: 'crud_tutorial'
 });
 
