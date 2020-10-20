@@ -1,4 +1,6 @@
-// Import
+/*
+ * Import Module
+ ****************/ 
 const express = require('express'),
       router  = express.Router(),
       upload  = require('./config/multer')
@@ -7,6 +9,10 @@ const express = require('express'),
 const homeController = require('./controllers/homeController')
     , articleController = require('./controllers/articleController')
     , contactController = require('./controllers/contactController')
+
+/*
+ * Router
+ ***********/
 
 // Home
 router.route('/')
@@ -27,4 +33,10 @@ router.route('/article/:id')
 router.route('/contact')
   .get(contactController.get)
 
-module.exports = router
+/***********
+ * / Router
+ */
+
+ 
+// on export router pour le récupérer dans ../server.js
+module.exports = router;
