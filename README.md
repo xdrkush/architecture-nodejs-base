@@ -22,7 +22,7 @@ Plusieurs branch à votre disposition:
  - jwt (base JWT) (OK, manque le readme))
  - light (branch la plus light (OK))
  - mocha (gerer les test unitaire avec mocha, ... (en cours))
- - multer-array (gérer un tableau d'image avec une DB (en cours))
+ - multer-array (gérer un tableau d'image avec une DB (OK))
  - mysql (copie de la branch master avec une DB mysql (OK))
  - nodemailer (gérer les mail (en cours))
  - page ID (réaliser un page ID liaison avec un article défini et c'est commentaire (OK))
