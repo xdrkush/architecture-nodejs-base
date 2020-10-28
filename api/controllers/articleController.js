@@ -1,7 +1,8 @@
 // Import
 const Article = require('../database/Article'),
     path = require('path'),
-    fs = require('fs')
+    fs = require('fs'),
+    upload = require('../config/multer')
 
 /*
  * Controller
@@ -21,7 +22,7 @@ module.exports = {
             // tableau du req.files
             files = req.files,
             // Définition d'un tableau que l'on va agrémenté avec nos data pour l'inscrire dans la DB
-            arrayFiles = []
+            arrayFiles = [];
 
         // Boucle parcours notre req.files afin de récupéré les datas que l'on veux avant d'inscrire
         // nos objets dans le tableaux
@@ -35,6 +36,13 @@ module.exports = {
                     originalname: files[i].originalname
                 })
             }
+        }
+
+        if (req.fileValidationError) {
+            return res.render('article', {
+                dbArticle, 
+                error: req.fileValidationError
+            });
         }
 
         // Si il n'y a pas de req.files tu redirige
@@ -88,7 +96,7 @@ module.exports = {
                 if (err) throw err
                 res.redirect('/article')
             })
-        // Ajouter une image dans notre galleryImg (MAX 3)
+            // Ajouter une image dans notre galleryImg (MAX 3)
         } else if (req.body.addImg === '') {
             /*
              *  Ajouter Une Image
@@ -132,8 +140,8 @@ module.exports = {
                 res.redirect('/article')
             })
 
-        
-        // delete 1 image de notre galleryImg
+
+            // delete 1 image de notre galleryImg
         } else if (req.body.deleteImg) {
             /*
              *  Supprimer Une Image
@@ -173,7 +181,7 @@ module.exports = {
                 })
             })
 
-        // editer 1 image de notre galleryImg
+            // editer 1 image de notre galleryImg
         } else if (singleImg) {
             /*
              *  Éditer une seule images
@@ -204,7 +212,7 @@ module.exports = {
                 res.redirect('/article')
             })
 
-        // Ajouter plusieurs image dans notre galleryImg
+            // Ajouter plusieurs image dans notre galleryImg
         } else if (multiple) {
             /*
              *  Éditer toutes les images

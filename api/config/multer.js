@@ -2,9 +2,9 @@
 const multer = require('multer')
 
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, './public/images')
-  },
+  // destination: (req, file, cb) => {
+  //   cb(null, './public/images')
+  // },
   filename: (req, file, cb) => {
     const ext = file.originalname,
       date = Date.now()
@@ -28,9 +28,10 @@ const upload = multer({
             cb(null, true)
         } else {
             cb(null, false)
-            cb(new Error('Le fichier doit être au format png, jpg, jpeg ou gif.'))
+            req.fileValidationError = 'Le fichier doit être au format png, jpg, jpeg ou gif.';
+            // return cb(new Error('Le fichier doit être au format png, jpg, jpeg ou gif.'))
         }
     }
-})
+}).array('inputArticleArray', 3)
 
 module.exports = upload

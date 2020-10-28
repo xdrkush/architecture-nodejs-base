@@ -21,12 +21,12 @@ router.route('/')
 // Article
 router.route('/article')
   .get(articleController.get)
-  .post(upload.array('inputArticleArray', 3), articleController.post)
+  .post(upload, articleController.post)
   .delete(articleController.deleteAll)
 
 // Article ID
 router.route('/article/:id')
-  .put(upload.array('inputArticleArray', 3), articleController.put)
+  .put(upload, articleController.put)
   .delete(articleController.deleteOne)
 
 // Contact
