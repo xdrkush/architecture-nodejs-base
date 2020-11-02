@@ -9,11 +9,13 @@ const Schema   = mongoose.Schema
 
 // Import model
 const Comment = require('./Comment')
-const User    = require('./User')
 
 // Création de notre Shéma (Article)
 const ArticleSchema = new mongoose.Schema({
     title: {
+        type: String
+    },
+    subtitle: {
         type: String
     },
     content: {
@@ -24,16 +26,7 @@ const ArticleSchema = new mongoose.Schema({
     comment: [{
         type: Schema.Types.ObjectId,
         ref: 'Comment'
-    }],
-    author: {
-        type: String
-    },
-    // Ici nous creeons une relation avec le model User
-    // C'est un tableau qui acceuillera les id des User (String)
-    authorID: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    }
+    }]
 })
 
 // Et l'on export notre model grace à la passerelle Mongoose
