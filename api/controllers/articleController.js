@@ -1,7 +1,6 @@
 /*
  * Import Module
  ****************/
-const Article = require('../database/Article')
 
 /*
  * Controller
@@ -9,49 +8,72 @@ const Article = require('../database/Article')
 module.exports = {
     // Method Get
     get: async (req, res) => {
-        // Variable de récupération de tout les Articles
-        const dbArticle = await Article.find({})
-        // Petit log pour checker
-        console.log(dbArticle);
-        // Et on renvoit la page article avec notre objet de tout nos article pour agrémenté la liste
-        res.render('article', {
-            dbArticle
+        // Variable de récupération de tout les customers
+        let sql = `SELECT * FROM customers`;
+        db.query(sql, (error, data, fields) => {
+            if (error) throw error;
+            res.render('article', {
+                status: 200,
+                dbArticle: data,
+                message: "Customers lists retrieved successfully"
+            })
         })
-
     },
     // Method Post
     post: async (req, res) => {
-        // Variable de récupération de tout les Articles
-        const dbArticle = await Article.find({})
-        // On demande au model Article de créé un Article
-        Article.create({
-            // Il nous créé un Article avec le model du formulaire envoyer (req.body)
-            ...req.body
+        let sql = `INSERT INTO customers (name,email,mobile) values(?)`;
+        let values = [
+            req.body.name,
+            req.body.email,
+            req.body.mobile
+        ];
+        db.query(sql, [values], function (err, data, fields) {
+            if (err) throw err;
+            let sql = `SELECT * FROM customers`;
+            db.query(sql, (error, data, fields) => {
+                if (error) throw error;
+                res.render('article', {
+                    status: 200,
+                    dbArticle: data,
+                    message: "Add Customer successfully"
+                })
+            })
         })
-        // Et on redirige sur la page /article pour que notre nouvelle article soit charger au montage de la page
-        res.redirect('/article')
 
     },
     // Method Delete One
     deleteOne: (req, res) => {
-        // Fonction de suppression de un Articles rechercher par son _id
-        Article.deleteOne({
-            // On va venir chercher parmis tout les _id celui égale à notre req.params (id recupéré dans l'URL)
-            _id: req.params.id
-            // ici nous avons un callback err
-        }, (err) => {
-            // Si nous avons pas d'erreur alors on redirige
-            if (!err) return res.redirect('/article')
-            // Sinon on renvoit l'err
-            else res.send(err)
+        let sql = `DELETE FROM customers  WHERE id = ?`;
+        let values = [
+            req.params.id
+        ];
+        db.query(sql, [values], function (err, data, fields) {
+            if (err) throw err;
+            let sql = `SELECT * FROM customers`;
+            db.query(sql, (error, data, fields) => {
+                if (error) throw error;
+                res.render('article', {
+                    status: 200,
+                    dbArticle: data,
+                    message: "Delete Customer successfully"
+                })
+            })
         })
     },
     // Method Delete All
     deleteAll: (req, res) => {
-        // Fonction de suppression de tout les Articles
-        Article.deleteMany((err) => {
-            if (!err) return res.redirect('/article')
-            else res.send(err)
+        let sql = `DELETE FROM customers`;
+        db.query(sql, function (err, data, fields) {
+            if (err) throw err;
+            let sql = `SELECT * FROM customers`;
+            db.query(sql, (error, data, fields) => {
+                if (error) throw error;
+                res.render('article', {
+                    status: 200,
+                    dbArticle: data,
+                    message: "Delete All Customer successfully"
+                })
+            })
         })
     }
 }

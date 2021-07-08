@@ -6,3 +6,9 @@
 <h1>Home</h1>
 
 {{> home/monPremierPartial }}
+
+{{#each dbArticle }}
+    
+    <p>{{ this.title }}</p>
+
+{{/each }}

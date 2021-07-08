@@ -1,3 +1,4 @@
+
 /*
  * App.js
  ******************************/
@@ -9,12 +10,12 @@ const
     app = express(),
     hbs = require('express-handlebars'),
     expressSession = require('express-session'),
-    mongoose = require('mongoose'),
-    MongoStore = require('connect-mongo'),
+    mysql = require('mysql'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
-    port = process.env.PORT || 3000,
-    morgan = require('morgan');
+    port = process.env.PORT || 4000,
+    morgan = require('morgan'),
+    util = require('util');
 
 // Morgan
 app.use(morgan('dev'))
@@ -22,15 +23,21 @@ app.use(morgan('dev'))
 // Method-Override
 app.use(methodOverride('_method'))
 
-// Mongoose
-// Ceci est un tuto sinon vous devez cacher cette information de la ligne juste en dessous
-const urlDb = 'mongodb://localhost:27017/apiRest'
-mongoose.connect(urlDb, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
-// save session avec MongoDB
-const mongoStore = MongoStore(expressSession)
+// Mysql
+db = mysql.createConnection({
+    host: 'localhost',
+    user: 'tuto',
+    password: 'tuto$',
+    database: 'crud_tutorial'
+});
+
+db.connect((err) => {
+    if (err) console.error('error connecting: ' + err.stack);
+    console.log('connected as id ' + db.threadId);
+});
+
+const query = util.promisify(db.query).bind(db);
+global.query = query;
 
 // Handlebars
 app.set('view engine', 'hbs');
@@ -44,10 +51,7 @@ app.use(expressSession({
     secret: 'securite',
     name: 'ptiGato',
     saveUninitialized: true,
-    resave: false,
-    store: new mongoStore({
-        mongooseConnection: mongoose.connection
-    })
+    resave: false
 }));
 
 // Express Static (Permet de pointer un dossier static sur une URL)
@@ -62,7 +66,10 @@ app.use(bodyParser.urlencoded({
 
 // Router
 const ROUTER = require('./api/router')
-app.use('/', ROUTER)
+app.use(ROUTER)
+
+const ROUTER_API = require('./api/router-api')
+app.use('/api/v1', ROUTER_API)
 
 // app.use((req, res) => {
 //     res.render('err404')
@@ -72,3 +79,5 @@ app.use('/', ROUTER)
 app.listen(port, () => {
     console.log("le serveur tourne sur le prt: " + port);
 });
+
+module.exports = { app, db, query }

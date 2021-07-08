@@ -4,11 +4,16 @@
     "description": "Tuto nodejs Basic",
     "main": "server.js",
     "scripts": {
-        "test": "nodemon --exec 'mocha ./test/*.js'",
+        "test": "nodemon --exec 'mocha ./exercices/test.js'",
+        "starter": "nodemon --exec 'mocha ./exercices/*starter.js'",
+        "chai": "nodemon --exec 'mocha ./exercices/chai*.js'",
+        "mocha": "nodemon --exec 'mocha ./exercices/mocha*.js'",
+        "async": "nodemon --exec 'mocha ./exercices/async*.js'",
         "tu": "nodemon --exec 'mocha ./test/*.js --timeout 10000 -R min'",
-        "start": "nodemon server.js",
+        "start": "node server.js",
         "reinstall": "sudo rm -r node_modules* && npm i && npm start",
-        "sass": "sass --watch ./public/css/sass/style.sass:./public/css/style.css"
+        "sass": "sass --watch ./public/css/sass/style.sass:./public/css/style.css",
+        "dev": "nodemon server.js"
     },
     "repository": {
         "type": "git",
@@ -24,15 +29,23 @@
     "dependencies": {
         "body-parser": "^1.19.0",
         "connect-mongo": "^3.2.0",
+        "date-format": "^3.0.0",
         "express": "^4.17.1",
         "express-handlebars": "^3.1.0",
         "express-session": "^1.17.0",
+        "lodash": "^4.17.20",
         "method-override": "^3.0.0",
-        "mongoose": "^5.8.9"
+        "mongoose": "^5.8.9",
+        "mysql": "^2.18.1",
+        "node-cron": "^2.0.3"
     },
     "devDependencies": {
-        "handlebars": "^4.5.0",
         "morgan": "^1.9.1",
-        "nodemon": "^2.0.2"
+        "chai": "^4.2.0",
+        "chai-http": "^4.3.0",
+        "handlebars": "^4.5.0",
+        "mocha": "^7.1.1",
+        "nodemon": "^2.0.2",
+        "supertest": "^4.0.2"
     }
 }

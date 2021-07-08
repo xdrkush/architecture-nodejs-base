@@ -2,15 +2,14 @@
  * Import Module
  ****************/ 
 const express = require('express'),
-    router = express.Router(),
-    path = require('path')
+    router = express.Router()
 
 /*
  * Controller
  *************/ 
 const homeController = require('./controllers/homeController'),
-    articleController = require('./controllers/articleController'),
-    contactController = require('./controllers/contactController')
+articleController = require('./controllers/articleController'),
+contactController = require('./controllers/contactController')
 
 /*
  * Router
