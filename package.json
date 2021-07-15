@@ -6,7 +6,8 @@
     "scripts": {
         "test": "nodemon --exec 'mocha ./test/*.js'",
         "tu": "nodemon --exec 'mocha ./test/*.js --timeout 10000 -R min'",
-        "start": "nodemon server.js",
+        "dev": "nodemon server.js",
+        "start": "node server.js",
         "reinstall": "sudo rm -r node_modules* && npm i && npm start",
         "sass": "sass --watch ./public/css/sass/style.sass:./public/css/style.css"
     },
@@ -27,6 +28,7 @@
         "date-format": "^3.0.0",
         "express": "^4.17.1",
         "express-handlebars": "^3.1.0",
+        "express-mysql-session": "^2.1.6",
         "express-session": "^1.17.0",
         "lodash": "^4.17.20",
         "method-override": "^3.0.0",
