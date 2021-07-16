@@ -23,7 +23,9 @@ module.exports = {
       domain: '.coucou',
       path: req.url,
       secure: true,
-      resave: false
+      resave: false,
+      signed: true,
+      secret: 'securite'
     })
     // res.render('home', {
     //   newCookie: 'Un nouveau cookie "Cookie" vous à été assigné',

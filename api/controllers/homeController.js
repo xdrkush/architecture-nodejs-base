@@ -10,8 +10,8 @@ module.exports = {
 
         // Check des log //
         // console.log('Page Home')
-        // console.log('1')
-        // console.log(req.cookies)
+        console.log('1')
+        console.log(req.signedCookies)
         // console.log('2')
         // console.log(CSession)
         // console.log('3')
