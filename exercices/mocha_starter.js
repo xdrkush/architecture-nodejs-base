@@ -13,8 +13,7 @@ describe("MOCHA // CRUD // Customer", () => {
     db.query(sql, [values], function (err, data, fields) {
       if (err) throw err;
       customer.id = data.insertId;
-      // console.log(typeof data.insertId)
-      assert(data.insertId)
+      assert.strictEqual( 'number' ,typeof data.insertId)
       done()
     });
   });
@@ -32,22 +31,22 @@ describe("MOCHA // CRUD // Customer", () => {
 
     db.query(sql, [values], function (err, data) {
       if (err) throw err;
-      // console.log("POST: ", data);
-      assert(data)
+      // console.log("POST: ", typeof data.insertid);
+      assert.strictEqual( 'number' ,typeof data.insertId)
       done();
     });
   });
 
-  // // Get ALL Customer
-  // it("GET ALL // Customer", (done) => {
-  //   let sql = `SELECT * FROM customers`;
-  //   db.query(sql, (data, err) => {
-  //     if (err) console.log(err);
-  //     // console.log(data)
-  //     // assert(data)
-  //     done();
-  //   });
-  // });
+  // Get ALL Customer
+  it("GET ALL // Customer", (done) => {
+    let sql = `SELECT * FROM customers`;
+    db.query(sql, (err, data) => {
+      if (err) console.log(err);
+      console.log( typeof data, data)
+      assert.strictEqual('object', typeof data)
+      done();
+    });
+  });
 
   // Get ID Customer
   it("GET ID // Customer", (done) => {
@@ -59,7 +58,7 @@ describe("MOCHA // CRUD // Customer", () => {
     db.query(sql, function (err, data) {
       if (err) throw err;
       // console.log("GET ID: ", data);
-      assert(data)
+      assert.strictEqual('object', typeof data)
       done();
     });
   });
@@ -76,7 +75,7 @@ describe("MOCHA // CRUD // Customer", () => {
     db.query(sql, function (err, data) {
       if (err) throw err;
       // console.log('PUT: ', data)
-      assert(data)
+      assert.strictEqual('object', typeof data)
       done();
     });
   });
@@ -87,20 +86,20 @@ describe("MOCHA // CRUD // Customer", () => {
     db.query(sql, function (err, data) {
       if (err) throw err;
       // console.log('DELETE ID: ', data)
-      assert(data)
+      assert.strictEqual('object', typeof data)
       done();
     });
   });
 
-  // à décommenter pour tout supprimer
-  // Delete ALL
-  it("DELETE ALL // Customer", (done) => {
-    let sql = `DELETE FROM customers`;
-    db.query(sql, function (err, data, fields) {
-      if (err) throw err;
-      // console.log('DELETE ID: ', data)
-      assert(data)
-      done();
-    });
-  });
+  // // à décommenter pour tout supprimer
+  // // Delete ALL
+  // it("DELETE ALL // Customer", (done) => {
+  //   let sql = `DELETE FROM customers`;
+  //   db.query(sql, function (err, data, fields) {
+  //     if (err) throw err;
+  //     // console.log('DELETE ID: ', data)
+  //     assert.strictEqual('object', typeof data)
+  //     done();
+  //   });
+  // });
 });
